@@ -10,19 +10,19 @@ const PopularCategory = () => {
 
   const slideLeft = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollLeft -= 200;
+      sliderRef.current.scrollLeft -= 400;
     }
   };
 
   const slideRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollLeft += 200;
+      sliderRef.current.scrollLeft += 400;
     }
   };
 
   return (
     <section className="mx-[20rem] my-10">
-      <h1 className="text-3xl">Popular Categoires</h1>
+      <h1 className="mb-5 text-3xl">Popular Categoires</h1>
 
       <div className="relative">
         <button
@@ -39,15 +39,11 @@ const PopularCategory = () => {
         </button>
 
         <div ref={sliderRef} className="flex overflow-x-scroll scroll-smooth">
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
-          <CategoryCard />
+          <CategoryCard title="Meats" bg="#FFD7D4" img="/meats.png" />
+          <CategoryCard title="Vegetables" bg="#D9F5DA" img="/vegetables.png" />
+          <CategoryCard title="Fruits" bg="#FFF2A7" img="/fruits.png" />
+          <CategoryCard title="Spices" bg="#FFD4A3" img="/spices.png" />
+          <CategoryCard title="Dry Fruits" bg="#f0ffdf" img="/dryfruits.png" />
         </div>
       </div>
     </section>

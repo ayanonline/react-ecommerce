@@ -1,3 +1,4 @@
+import OfferSection from "../components/OfferSection";
 import PopularCategory from "../components/PopularCategory";
 import Banner from "../components/banner/Banner";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Banner />
       <PopularCategory />
+      <OfferSection />
     </div>
   );
 };
