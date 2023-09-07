@@ -1,6 +1,7 @@
 import OfferSection from "../components/OfferSection";
 import PopularCategory from "../components/PopularCategory";
-import Banner from "../components/banner/Banner";
+import Banner from "../components/Banner";
+import OurProducts from "../components/OurProducts";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       <PopularCategory />
       <OfferSection />
+      <OurProducts />
     </div>
   );
 };
