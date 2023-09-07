@@ -1,4 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
+import { getAllproducts } from "../services/apiProducts";
+import { Link } from "react-router-dom";
 
 const Button = ({ title }) => {
   return (
@@ -9,6 +12,13 @@ const Button = ({ title }) => {
 };
 
 const OurProducts = () => {
+  const {
+    isLoading,
+    data: productsData,
+    error,
+  } = useQuery({ queryKey: ["products"], queryFn: () => getAllproducts(6) });
+
+  if (error) return <h1>Something Went wrong</h1>;
   return (
     <section className="mx-[20rem] py-8">
       <h1 className="mb-5 text-5xl">Our Products</h1>
@@ -24,15 +34,15 @@ const OurProducts = () => {
         </div>
       </div>
       <div className="my-4 flex flex-wrap justify-between">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {!isLoading &&
+          productsData.products.map((item) => (
+            <Link to={"/products/" + item._id} key={item._id}>
+              <ProductCard product={item} />
+            </Link>
+          ))}
       </div>
       <button className="mx-auto flex rounded-md bg-green-500 px-8 py-4 text-xl text-white">
-        view all products
+        <Link to="/products">view all products</Link>
       </button>
     </section>
   );

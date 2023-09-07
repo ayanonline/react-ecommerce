@@ -3,9 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header>
+    <header className="sticky top-0 z-50 bg-white shadow-xl">
       <nav className="flex select-none items-center justify-between px-[20rem] py-4">
-        <div>Fresh Grocery</div>
+        <div>
+          <Link to="/" className="text-4xl font-bold text-green-500">
+            Fresh Grocery
+          </Link>
+        </div>
         <div className="flex items-center gap-5">
           <div className="flex  items-center rounded-md border-2 px-2 py-1">
             <SlMagnifier />
