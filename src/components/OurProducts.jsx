@@ -36,9 +36,7 @@ const OurProducts = () => {
       <div className="my-4 flex flex-wrap justify-between">
         {!isLoading &&
           productsData.products.map((item) => (
-            <Link to={"/products/" + item._id} key={item._id}>
-              <ProductCard product={item} />
-            </Link>
+            <ProductCard key={item._id} product={item} />
           ))}
       </div>
       <button className="mx-auto flex rounded-md bg-green-500 px-8 py-4 text-xl text-white">

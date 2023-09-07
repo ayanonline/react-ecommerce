@@ -15,27 +15,27 @@ const Footer = () => {
       </div>
       <div className="w-1/6">
         <h1>About</h1>
-        <a href="">About Us</a>
-        <a href="">Secure Shopping</a>
-        <a href="">New Products</a>
-        <a href="">Our Blog</a>
-        <a href="">Top Sellers</a>
+        <a href="/about">About Us</a>
+        <a href="/secure">Secure Shopping</a>
+        <a href="/products">New Products</a>
+        <a href="/blogs">Our Blog</a>
+        <a href="/top-seller">Top Sellers</a>
       </div>
       <div className="w-1/6">
         <h1>Categores</h1>
-        <a href="">Mutton</a>
-        <a href="">Beverage</a>
-        <a href="">Dairy products</a>
-        <a href="">Vegetabel</a>
-        <a href="">fruits</a>
+        <a href="/category/mutton">Mutton</a>
+        <a href="/category/beverage">Beverage</a>
+        <a href="/category/diary">Dairy products</a>
+        <a href="/category/vegetables">Vegetabel</a>
+        <a href="/category/fruits">fruits</a>
       </div>
       <div className="w-1/6">
         <h1>Privacy Policy</h1>
-        <a href="">Term and Condition</a>
-        <a href="">Security</a>
-        <a href="">Shipping</a>
-        <a href="">Privacy Policy</a>
-        <a href="">Payment</a>
+        <a href="/terms">Term and Condition</a>
+        <a href="/security">Security</a>
+        <a href="/shipping">Shipping</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/payment">Payment</a>
       </div>
       <div className="w-1/6">
         <h1>Contact Us</h1>
