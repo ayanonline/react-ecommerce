@@ -43,7 +43,7 @@ const ProductGallery = ({ images }) => {
 
         <div
           ref={sliderRef}
-          className="flex justify-center gap-5 overflow-x-scroll scroll-smooth pl-10"
+          className="scrollbar-hide flex justify-center gap-5 overflow-x-scroll scroll-smooth pl-10"
         >
           {images.map((img) => (
             <img

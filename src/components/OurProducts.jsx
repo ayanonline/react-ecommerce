@@ -16,7 +16,7 @@ const OurProducts = () => {
     isLoading,
     data: productsData,
     error,
-  } = useQuery({ queryKey: ["products"], queryFn: () => getAllproducts(6) });
+  } = useQuery({ queryKey: ["ourProducts"], queryFn: () => getAllproducts(6) });
 
   if (error) return <h1>Something Went wrong</h1>;
   return (

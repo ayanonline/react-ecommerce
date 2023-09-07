@@ -36,7 +36,7 @@ const ReviewSection = () => {
       </button>
       <div
         ref={sliderRef}
-        className="mt-5 flex overflow-x-scroll scroll-smooth"
+        className="scrollbar-hide mt-5 flex overflow-x-scroll scroll-smooth"
       >
         <ReviewCard />
         <ReviewCard />

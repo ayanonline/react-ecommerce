@@ -1,9 +1,10 @@
 import { SlMagnifier, SlBasketLoaded } from "react-icons/sl";
 import { Link, NavLink } from "react-router-dom";
+import Search from "../features/Search";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-xl">
+    <header className="sticky top-0 z-50 bg-white shadow-md">
       <nav className="flex select-none items-center justify-between px-[20rem] py-4">
         <div>
           <Link to="/" className="text-4xl font-bold text-green-500">
@@ -11,14 +12,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex items-center gap-5">
-          <div className="flex  items-center rounded-md border-2 px-2 py-1">
-            <SlMagnifier />
-            <input
-              type="text"
-              className="ml-2 outline-none"
-              placeholder="Search"
-            />
-          </div>
+          <Search />
           <ul className="flex gap-5">
             <li>
               <NavLink to="/" className="text-gray-400">

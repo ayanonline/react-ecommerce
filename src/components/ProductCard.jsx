@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="my-2 flex flex-col items-center gap-4 rounded-md border px-10 py-4 shadow-lg">
+    <div className="my-2 flex w-[25rem] flex-col items-center gap-4 rounded-md border px-10 py-4 shadow-lg">
       <Link to={"/products/" + product._id}>
         <img
           src={product.thumbnail}

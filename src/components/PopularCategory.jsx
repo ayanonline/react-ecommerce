@@ -38,7 +38,10 @@ const PopularCategory = () => {
           <HiOutlineArrowNarrowRight className="h-6 w-6 text-green-400" />
         </button>
 
-        <div ref={sliderRef} className="flex overflow-x-scroll scroll-smooth">
+        <div
+          ref={sliderRef}
+          className="scrollbar-hide flex overflow-x-scroll scroll-smooth"
+        >
           <CategoryCard title="Meats" bg="bg-pink-200" img="/meats.png" />
           <CategoryCard
             title="Vegetables"

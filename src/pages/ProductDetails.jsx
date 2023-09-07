@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductGallery from "../components/ProductGallery";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProductDetails } from "../services/apiProducts";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ["productDetails", productId] });
+  }, [productId, queryClient]);
 
   const {
     isLoading,
     data: productDetails,
     error,
   } = useQuery({
-    queryKey: ["productDetails"],
+    queryKey: ["productDetails", productId],
     queryFn: () => getProductDetails(productId),
   });
 
