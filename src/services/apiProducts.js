@@ -6,10 +6,8 @@ export const getAllproducts = async (limit = 10) => {
   return data;
 };
 
-export const getProductDetails = async () => {
-  const res = await fetch(
-    "http://localhost:4000/api/v1/products/64568ba9dc641567d154200e",
-  );
+export const getProductDetails = async (productId) => {
+  const res = await fetch("http://localhost:4000/api/v1/products/" + productId);
   const data = await res.json();
   return data;
 };
