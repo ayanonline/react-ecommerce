@@ -1,18 +1,20 @@
 import Cookies from "js-cookie";
 import React, { useState, useRef, useEffect } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const [avatar, setAvatar] = useState();
   const passRef = useRef(null);
 
   const navigate = useNavigate();
 
   const token = Cookies.get("token");
-  console.log(token);
+  // console.log(token);
 
   useEffect(() => {
     if (token) {
@@ -22,18 +24,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:4000/api/v1/user/login", {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("avatar", avatar);
+    console.log(avatar);
+    const res = await fetch("http://localhost:4000/api/v1/user/register", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
+      // headers: { "Content-Type": "application/json" },
+      // vul koreo ata comment out korbe na jodi form data nia kaj koro
+      body: formData,
     });
     const data = await res.json();
     console.log(data);
-    Cookies.set("token", data.token);
-    navigate("/");
+    // Cookies.set("token", data.token);
+    // navigate("/");
   };
 
   return (
@@ -45,8 +51,15 @@ const Login = () => {
       </section>
 
       <section className="min-w-[50%] p-20">
-        <h1 className="mb-16 text-5xl font-bold text-green-500">Sign In</h1>
+        <h1 className="mb-16 text-5xl font-bold text-green-500">Sign Up</h1>
         <form className="flex flex-col" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name"
+            className="mb-6 rounded-md border-2 p-4 outline-none"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <input
             type="email"
             placeholder="Email"
@@ -79,19 +92,24 @@ const Login = () => {
               )}
             </div>
           </div>
-
+          <input
+            type="file"
+            name="avatar"
+            accept="image/*"
+            onChange={(e) => setAvatar(e.target.files[0])}
+          />
           <button
             type="submit"
             className="rounded-md bg-green-500 p-3 text-2xl font-bold text-white"
           >
-            Sign in
+            Sign up
           </button>
         </form>
 
         <p className="mt-4 cursor-pointer text-lg text-gray-400 hover:underline">
           Don't have an account?
           <span className="pl-2 font-bold text-green-500">
-            <Link to="/signup">Sigin up</Link>{" "}
+            <Link to="/login">Sigin in</Link>
           </span>
         </p>
       </section>
@@ -99,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
