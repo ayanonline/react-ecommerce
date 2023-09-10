@@ -1,6 +1,7 @@
 import { SlMagnifier, SlBasketLoaded } from "react-icons/sl";
 import { Link, NavLink } from "react-router-dom";
 import Search from "../features/Search";
+import Cookies from "js-cookie";
 
 const Header = () => {
   return (
@@ -36,7 +37,7 @@ const Header = () => {
             </NavLink>
           </div>
           <button className="rounded-md border bg-green-500 px-8 py-1 text-xl font-semibold text-white">
-            Login
+            <Link to="/login">Login</Link>
           </button>
         </div>
       </nav>

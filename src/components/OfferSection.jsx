@@ -16,7 +16,7 @@ const OfferSection = () => {
         <img
           src="/vegetables2.png"
           alt="offer image"
-          className="absolute bottom-0 h-[24rem]"
+          className="absolute bottom-0 h-[24rem] rounded-bl-md"
         />
       </div>
       <div className="flex w-1/2 flex-col justify-between">

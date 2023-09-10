@@ -18,7 +18,6 @@ const OurProducts = () => {
     error,
   } = useQuery({ queryKey: ["ourProducts"], queryFn: () => getAllproducts(6) });
 
-  if (error) return <h1>Something Went wrong</h1>;
   return (
     <section className="mx-[20rem] py-8">
       <h1 className="mb-5 text-5xl">Our Products</h1>

@@ -4,6 +4,8 @@ import Banner from "../components/Banner";
 import OurProducts from "../components/OurProducts";
 import SubscribeSection from "../components/SubscribeSection";
 import ReviewSection from "../components/ReviewSection";
+import { ErrorBoundary } from "react-error-boundary";
+import Error from "../ui/Error";
 
 const Home = () => {
   return (
@@ -11,7 +13,9 @@ const Home = () => {
       <Banner />
       <PopularCategory />
       <OfferSection />
-      <OurProducts />
+      <ErrorBoundary fallback={<Error />}>
+        <OurProducts />
+      </ErrorBoundary>
       <SubscribeSection />
       <ReviewSection />
     </div>

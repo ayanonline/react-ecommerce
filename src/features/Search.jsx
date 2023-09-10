@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Search = () => {
@@ -23,12 +24,11 @@ const Search = () => {
     );
     const json = await res.json();
     setSuggestions(json.products);
-    console.log(json.products);
   };
 
   return (
     <div className="relative">
-      <div className="flex w-[47vw] rounded-md border p-2 md:w-[25vw]">
+      <div className="flex w-[47vw] items-center rounded-md border p-2 md:w-[25vw]">
         <CiSearch className="h-6 w-6" />
         <input
           type="text"
@@ -37,6 +37,10 @@ const Search = () => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           onFocus={() => searchText.length > 0 && setShowSuggestion(true)}
+        />
+        <IoMdClose
+          className={searchText.length > 0 ? "block cursor-pointer" : "hidden"}
+          onClick={() => setSearchText("")}
         />
       </div>
 
@@ -49,7 +53,7 @@ const Search = () => {
           <div className="felx flex-col">
             {suggestions.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className="my-2 flex items-center justify-between p-4"
               >
                 <Link to={"/products/" + item._id}>
