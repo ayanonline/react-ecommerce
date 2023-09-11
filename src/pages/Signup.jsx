@@ -1,7 +1,9 @@
-import Cookies from "js-cookie";
 import React, { useState, useRef, useEffect } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import { signup } from "../store/actions/signup";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -12,15 +14,16 @@ const Signup = () => {
   const passRef = useRef(null);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLoading, user, isAuthenticated, error } = useSelector(
+    (state) => state.user,
+  );
 
-  const token = Cookies.get("token");
-  // console.log(token);
+  if (error) toast.error(error);
 
   useEffect(() => {
-    if (token) {
-      navigate("/");
-    }
-  }, []);
+    isAuthenticated && navigate("/");
+  }, [isAuthenticated]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,18 +31,8 @@ const Signup = () => {
     formData.append("name", name);
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("avatar", avatar);
-    console.log(avatar);
-    const res = await fetch("http://localhost:4000/api/v1/user/register", {
-      method: "POST",
-      // headers: { "Content-Type": "application/json" },
-      // vul koreo ata comment out korbe na jodi form data nia kaj koro
-      body: formData,
-    });
-    const data = await res.json();
-    console.log(data);
-    // Cookies.set("token", data.token);
-    // navigate("/");
+    // formData.append("avatar", avatar);
+    dispatch(signup(formData));
   };
 
   return (
@@ -94,19 +87,20 @@ const Signup = () => {
               )}
             </div>
           </div>
-          <input
+          {/* <input
             type="file"
             name="avatar"
             accept="image/*"
             onChange={(e) => setAvatar(e.target.files[0])}
             className="mb-6 cursor-pointer rounded-md border-2 outline-none file:mr-6 file:cursor-pointer file:rounded-md file:border-0 file:bg-green-500 file:p-3 file:px-6
              file:text-white"
-          />
+          /> */}
           <button
             type="submit"
-            className="rounded-md bg-green-500 p-3 text-2xl font-bold text-white"
+            className="rounded-md bg-green-500 p-3 text-2xl font-bold text-white disabled:cursor-not-allowed"
+            disabled={isLoading}
           >
-            Sign up
+            {isLoading ? "Signing up..." : "Sign up"}
           </button>
         </form>
 
