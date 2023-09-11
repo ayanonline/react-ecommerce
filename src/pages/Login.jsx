@@ -2,6 +2,9 @@ import Cookies from "js-cookie";
 import React, { useState, useRef, useEffect } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../store/actions/login";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,32 +12,27 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const passRef = useRef(null);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const token = Cookies.get("token");
-  console.log(token);
+  const { isLoading, user, isAuthenticated, error } = useSelector(
+    (state) => state.user,
+  );
 
   useEffect(() => {
-    if (token) {
-      navigate("/");
-    }
-  }, []);
+    isAuthenticated && navigate("/");
+  }, [isLoading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:4000/api/v1/user/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-    const data = await res.json();
-    console.log(data);
-    Cookies.set("token", data.token);
-    navigate("/");
+    dispatch(login({ email, password }));
   };
+  if (error) {
+    toast.error(error);
+  }
+  if (isAuthenticated) {
+    toast.success("Successfully logged in");
+  }
 
   return (
     <div className="flex h-[92vh]  select-none items-start bg-gray-100 px-[20rem] py-20">
@@ -82,17 +80,18 @@ const Login = () => {
 
           <button
             type="submit"
-            className="rounded-md bg-green-500 p-3 text-2xl font-bold text-white"
+            className="rounded-md bg-green-500 p-3 text-2xl font-bold text-white disabled:cursor-not-allowed"
+            disabled={isLoading}
           >
-            Sign in
+            {isLoading ? "Signing in..." : "Sign in"}
           </button>
         </form>
 
         <p className="mt-4 cursor-pointer text-lg text-gray-400 hover:underline">
-          Don't have an account?
-          <span className="pl-2 font-bold text-green-500">
-            <Link to="/signup">Sigin up</Link>{" "}
-          </span>
+          <Link to="/signup">
+            Don't have an account?
+            <span className="pl-2 font-bold text-green-500">Sigin up</span>
+          </Link>
         </p>
       </section>
     </div>

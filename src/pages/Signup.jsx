@@ -43,10 +43,12 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex h-[92vh]  select-none items-start bg-gray-100 px-[20rem] py-20">
+    <div className="flex h-[92vh]  select-none items-start bg-gray-100 px-[20rem] py-10">
       <section className="min-w-[50%] p-20">
-        <h1 className="text-5xl">Welcome back </h1>
-        <h2 className="mt-4 text-2xl">Good to see you again</h2>
+        <h1 className="text-5xl">
+          Welcome To <span className="text-green-500">Fresh Grocery</span>
+        </h1>
+
         <img src="/cart.png" alt="an image" className="-mt-8 h-[24rem]" />
       </section>
 
@@ -97,6 +99,8 @@ const Signup = () => {
             name="avatar"
             accept="image/*"
             onChange={(e) => setAvatar(e.target.files[0])}
+            className="mb-6 cursor-pointer rounded-md border-2 outline-none file:mr-6 file:cursor-pointer file:rounded-md file:border-0 file:bg-green-500 file:p-3 file:px-6
+             file:text-white"
           />
           <button
             type="submit"
@@ -107,10 +111,10 @@ const Signup = () => {
         </form>
 
         <p className="mt-4 cursor-pointer text-lg text-gray-400 hover:underline">
-          Don't have an account?
-          <span className="pl-2 font-bold text-green-500">
-            <Link to="/login">Sigin in</Link>
-          </span>
+          <Link to="/login">
+            Already have an account?
+            <span className="pl-2 font-bold text-green-500">Sigin in</span>
+          </Link>
         </p>
       </section>
     </div>
