@@ -12,6 +12,7 @@ const Signup = () => {
   const [showPass, setShowPass] = useState(false);
   const [avatar, setAvatar] = useState();
   const passRef = useRef(null);
+  const [validationError, setValidationError] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,6 +33,16 @@ const Signup = () => {
     formData.append("email", email);
     formData.append("password", password);
     // formData.append("avatar", avatar);
+    if (name.length < 2) {
+      setValidationError("!Please enter valid name");
+      return;
+    } else if (
+      !/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email)
+    ) {
+      setValidationError("Please enter valid email!");
+      return;
+    }
+    setValidationError("");
     dispatch(signup(formData));
   };
 
@@ -95,6 +106,7 @@ const Signup = () => {
             className="mb-6 cursor-pointer rounded-md border-2 outline-none file:mr-6 file:cursor-pointer file:rounded-md file:border-0 file:bg-green-500 file:p-3 file:px-6
              file:text-white"
           /> */}
+          <p className="mb-2 text-red-600">{validationError}</p>
           <button
             type="submit"
             className="rounded-md bg-green-500 p-3 text-2xl font-bold text-white disabled:cursor-not-allowed"

@@ -14,7 +14,7 @@ import Cart from "./pages/Cart";
 import Error from "./ui/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Account from "./pages/Account";
+import Profile from "./pages/Profile";
 import ProtectedRoute from "./features/authentication/ProtectedRoute";
 
 const queryClient = new QueryClient({
@@ -57,10 +57,10 @@ const App = () => {
               <Route path="/signup" element={<Signup />} />
 
               <Route
-                path="/account/:userId"
+                path="/profile/"
                 element={
                   <ProtectedRoute>
-                    <Account />
+                    <Profile />
                   </ProtectedRoute>
                 }
               />

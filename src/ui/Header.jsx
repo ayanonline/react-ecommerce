@@ -38,7 +38,7 @@ const Header = () => {
             </NavLink>
           </div>
           {isAuthenticated ? (
-            <Link to={"account/" + user._id}>
+            <Link to="profile">
               <img
                 src={user.avatar}
                 alt="user-icon"
