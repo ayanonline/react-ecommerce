@@ -1,9 +1,10 @@
-import { SlMagnifier, SlBasketLoaded } from "react-icons/sl";
+import { SlBasketLoaded } from "react-icons/sl";
 import { Link, NavLink } from "react-router-dom";
 import Search from "../features/Search";
-import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <nav className="flex select-none items-center justify-between px-[20rem] py-4">
@@ -21,13 +22,13 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about" className="text-gray-400">
-                About
+              <NavLink to="/products" className="text-gray-400">
+                All products
               </NavLink>
             </li>
             <li>
-              <NavLink to="/products" className="text-gray-400">
-                All products
+              <NavLink to="/about" className="text-gray-400">
+                About
               </NavLink>
             </li>
           </ul>
@@ -36,9 +37,19 @@ const Header = () => {
               <SlBasketLoaded className="h-8 w-8" />
             </NavLink>
           </div>
-          <button className="rounded-md border bg-green-500 px-8 py-1 text-xl font-semibold text-white">
-            <Link to="/login">Login</Link>
-          </button>
+          {isAuthenticated ? (
+            <Link to={"account/" + user._id}>
+              <img
+                src={user.avatar}
+                alt="user-icon"
+                className="h-10 w-10 rounded-full object-contain"
+              />
+            </Link>
+          ) : (
+            <button className="rounded-md border bg-green-500 px-8 py-1 text-xl font-semibold text-white">
+              <Link to="/login">Login</Link>
+            </button>
+          )}
         </div>
       </nav>
     </header>
