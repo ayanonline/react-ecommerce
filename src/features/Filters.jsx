@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  filterCategory,
+  clearFilters,
+  filterRatins,
+  filterMaxPrice,
+} from "../store/slices/filterSlice";
 
 const Filters = () => {
-  const [price, setPrice] = useState(5000);
-  const [category, setCategory] = useState([]);
-  const [ratings, setRatings] = useState(null);
+  const [price, setPrice] = useState(1000);
+  const [category, setCategory] = useState("");
+  const [ratings, setRatings] = useState(0);
 
+  const dispatch = useDispatch();
   useEffect(() => {
-    filter();
+    dispatch(filterCategory(category));
+    dispatch(filterRatins(ratings));
+    dispatch(filterMaxPrice(price));
   }, [category, price, ratings]);
 
-  // checkbox handler
-  const checkBoxHandler = (e) => {};
-
-  // filter function
-  const filter = () => {};
-  // price handler
-  const handleSlider = (e) => {
-    setPrice(e.target.value);
-  };
-
-  //ratings handler
-  const ratingsHandler = (e) => {
-    if (ratings == e.target.value) {
-      setRatings(null);
-    } else {
-      setRatings(e.target.value);
-    }
-  };
-
   return (
-    <section className="sticky top-40 mr-6 h-[80vh] w-1/5 rounded-md border p-4 shadow-lg">
+    <section className="sticky top-40 mr-6 mt-4 h-[80vh] w-1/5 rounded-md border p-4 shadow-lg">
       <div className="mb-4 flex justify-between">
         <span className="text-xl font-semibold">Filters</span>
-        <span className="cursor-pointer text-blue-400" onClick={() => {}}>
+        <span
+          className="cursor-pointer text-blue-400"
+          onClick={() => {
+            dispatch(clearFilters());
+            setCategory("");
+            setRatings(0);
+          }}
+        >
           CLERAR FILTERS
         </span>
       </div>
@@ -45,10 +43,12 @@ const Filters = () => {
             type="checkbox"
             value="fruits"
             name="category"
-            id="fruits"
-            onChange={checkBoxHandler}
+            checked={category === "fruits"}
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
           />
-          <label for="fruits">Fruits</label>
+          <label htmlFor="fruits">Fruits</label>
         </div>
         <div>
           <input
@@ -56,21 +56,25 @@ const Filters = () => {
             type="checkbox"
             name="category"
             value="juice"
-            id="juice"
-            onChange={checkBoxHandler}
+            checked={category === "juice"}
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
           />
-          <label for="juice">Juice</label>
+          <label htmlFor="juice">Juice</label>
         </div>
         <div>
           <input
             className="mr-2"
             type="checkbox"
             name="category"
-            value="vegetable"
-            id="vegetable"
-            onChange={checkBoxHandler}
+            value="vegetables"
+            checked={category === "vegetables"}
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
           />
-          <label for="vegetable">Vegetable</label>
+          <label htmlFor="vegetable">Vegetable</label>
         </div>
       </div>
       <div className="my-4">
@@ -80,9 +84,9 @@ const Filters = () => {
             type="range"
             name="price"
             min={0}
-            max={5000}
+            max={1000}
             value={price}
-            onChange={handleSlider}
+            onChange={(e) => setPrice(e.target.value)}
             className="w-full "
           />
         </div>
@@ -96,10 +100,10 @@ const Filters = () => {
             name="ratings"
             value={4}
             checked={ratings == 4}
-            onChange={ratingsHandler}
+            onChange={(e) => setRatings(e.target.value)}
             className="mr-2"
           />
-          <label for="1">4* & above</label>
+          <label htmlFor="1">4* & above</label>
         </div>
         <div>
           <input
@@ -108,10 +112,10 @@ const Filters = () => {
             name="ratings"
             value={3}
             checked={ratings == 3}
-            onChange={ratingsHandler}
+            onChange={(e) => setRatings(e.target.value)}
             className="mr-2"
           />
-          <label for="2">3* & above</label>
+          <label htmlFor="2">3* & above</label>
         </div>
       </div>
     </section>
