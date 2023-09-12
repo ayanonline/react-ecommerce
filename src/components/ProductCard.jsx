@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AiFillStar } from "react-icons/ai";
 
 const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
@@ -14,6 +15,14 @@ const ProductCard = ({ product }) => {
         />
       </Link>
       <h1 className="text-3xl">{product.name}</h1>
+      <div className="flex items-center">
+        <div className="mr-1 flex items-center">
+          <AiFillStar className="mr-1 text-xl text-green-600" />
+          {product.ratings}.0
+        </div>
+        ({product.numOfReviews})
+      </div>
+
       <p className="text-lg">
         <span>{product.quantity}</span>
         <span className="ml-4 text-green-500">₹{product.price}</span>
