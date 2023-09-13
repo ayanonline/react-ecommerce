@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdModeEditOutline } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
 import { updateUserProfile } from "../services/user";
 import toast from "react-hot-toast";
+import { updateUser } from "../store/slices/userSlice";
 
 const ProfileSettings = () => {
   const { user } = useSelector((state) => state.user);
+
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [profilePhoto, setProfilePhoto] = useState(user.avatar);
   const [image, setImage] = useState(null);
+
+  const dispatch = useDispatch();
+
   const formData = new FormData();
   if (image) {
     const reader = new FileReader();
@@ -20,13 +25,15 @@ const ProfileSettings = () => {
 
   const { isLoading, mutate } = useMutation({
     mutationFn: () => updateUserProfile(formData),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      dispatch(updateUser(data.user));
       toast.success("Profile updated successfully");
     },
     onError: (error) => {
       toast.error("Failed to update profile\n" + error.message);
     },
   });
+
   const clickHandler = () => {
     formData.append("avatar", image);
     formData.append("email", email);
@@ -57,6 +64,7 @@ const ProfileSettings = () => {
           />
         </div>
       </div>
+
       <label htmlFor="name" className="mb-1 text-lg">
         Name
       </label>
@@ -67,6 +75,7 @@ const ProfileSettings = () => {
         onChange={(e) => setName(e.target.value)}
         className="mb-4 rounded-md bg-gray-100 p-3 outline-none"
       />
+
       <label htmlFor="email" className="mb-1 text-lg">
         Email address
       </label>
@@ -77,6 +86,7 @@ const ProfileSettings = () => {
         onChange={(e) => setEmail(e.target.value)}
         className="mb-20 rounded-md bg-gray-100 p-3 outline-none"
       />
+
       <button
         disabled={isLoading}
         className="absolute bottom-0 right-0 mb-4 w-fit bg-green-500 p-2 text-white"

@@ -13,6 +13,9 @@ const userSlice = createSlice({
       state.isAuthenticated = false;
       state.user = {};
     },
+    updateUser: (state, action) => {
+      return { ...state, user: action.payload };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -72,5 +75,5 @@ const userSlice = createSlice({
       });
   },
 });
-export const { logout } = userSlice.actions;
+export const { logout, updateUser } = userSlice.actions;
 export default userSlice.reducer;
