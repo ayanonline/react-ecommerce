@@ -22,13 +22,14 @@ const Filters = () => {
   return (
     <section className="sticky top-40 mr-6 mt-4 h-[80vh] w-1/5 rounded-md border p-4 shadow-lg">
       <div className="mb-4 flex justify-between">
-        <span className="text-xl font-semibold">Filters</span>
+        <span className="text-2xl font-semibold">Filters</span>
         <span
-          className="cursor-pointer text-blue-400"
+          className="cursor-pointer text-xl text-blue-400"
           onClick={() => {
             dispatch(clearFilters());
             setCategory("");
             setRatings(0);
+            setPrice(1000);
           }}
         >
           CLERAR FILTERS
@@ -36,10 +37,11 @@ const Filters = () => {
       </div>
 
       <div className="select-none">
-        <span className="text-xl">Category</span>
-        <div>
+        <h2 className="my-2 text-xl">Category</h2>
+        <div className="flex items-center">
           <input
-            className="mr-2"
+            id="fruits"
+            className="mr-2 h-5 w-5 cursor-pointer"
             type="checkbox"
             value="fruits"
             name="category"
@@ -48,11 +50,14 @@ const Filters = () => {
               setCategory(e.target.value);
             }}
           />
-          <label htmlFor="fruits">Fruits</label>
+          <label htmlFor="fruits" className="cursor-pointer text-xl">
+            Fruits
+          </label>
         </div>
-        <div>
+        <div className="flex items-center">
           <input
-            className="mr-2"
+            id="juice"
+            className="mr-2 h-5 w-5 cursor-pointer"
             type="checkbox"
             name="category"
             value="juice"
@@ -61,11 +66,14 @@ const Filters = () => {
               setCategory(e.target.value);
             }}
           />
-          <label htmlFor="juice">Juice</label>
+          <label htmlFor="juice" className="cursor-pointer text-xl">
+            Juice
+          </label>
         </div>
-        <div>
+        <div className="flex items-center">
           <input
-            className="mr-2"
+            id="vegetable"
+            className="mr-2 h-5 w-5 cursor-pointer"
             type="checkbox"
             name="category"
             value="vegetables"
@@ -74,26 +82,26 @@ const Filters = () => {
               setCategory(e.target.value);
             }}
           />
-          <label htmlFor="vegetable">Vegetable</label>
+          <label htmlFor="vegetable" className="cursor-pointer text-xl">
+            Vegetable
+          </label>
         </div>
       </div>
-      <div className="my-4">
+      <div className="my-3">
         <span className="text-xl">Max price: {price}</span>
-        <div>
-          <input
-            type="range"
-            name="price"
-            min={0}
-            max={1000}
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="w-full "
-          />
-        </div>
+        <input
+          type="range"
+          name="price"
+          min={0}
+          max={1000}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="w-full "
+        />
       </div>
       <div>
         <span className="text-xl">Customer's ratings</span>
-        <div>
+        <div className="flex items-center">
           <input
             type="checkbox"
             id="1"
@@ -101,11 +109,13 @@ const Filters = () => {
             value={4}
             checked={ratings == 4}
             onChange={(e) => setRatings(e.target.value)}
-            className="mr-2"
+            className="mr-2 h-5 w-5 cursor-pointer"
           />
-          <label htmlFor="1">4* & above</label>
+          <label htmlFor="1" className="cursor-pointer text-xl">
+            4* & above
+          </label>
         </div>
-        <div>
+        <div className="flex items-center">
           <input
             type="checkbox"
             id="2"
@@ -113,9 +123,11 @@ const Filters = () => {
             value={3}
             checked={ratings == 3}
             onChange={(e) => setRatings(e.target.value)}
-            className="mr-2"
+            className="mr-2 h-5 w-5 cursor-pointer"
           />
-          <label htmlFor="2">3* & above</label>
+          <label htmlFor="2" className="cursor-pointer text-xl">
+            3* & above
+          </label>
         </div>
       </div>
     </section>
