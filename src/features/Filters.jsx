@@ -40,18 +40,18 @@ const Filters = () => {
         <h2 className="my-2 text-xl">Category</h2>
         <div className="flex items-center">
           <input
-            id="fruits"
+            id="fruit"
             className="mr-2 h-5 w-5 cursor-pointer"
             type="checkbox"
-            value="fruits"
+            value="fruit"
             name="category"
-            checked={category === "fruits"}
+            checked={category === "fruit"}
             onChange={(e) => {
               setCategory(e.target.value);
             }}
           />
-          <label htmlFor="fruits" className="cursor-pointer text-xl">
-            Fruits
+          <label htmlFor="fruit" className="cursor-pointer text-xl">
+            Fruit
           </label>
         </div>
         <div className="flex items-center">

@@ -22,9 +22,9 @@ const ProductGallery = ({ images }) => {
     <div className="min-w-[30vw] max-w-[30vw] border-2">
       <img
         ref={targetImage}
-        src={images[0].url + images[0].public_id}
+        src={images[0]}
         alt="product image"
-        className="max-h-[30rem] min-h-[30rem] min-w-[100%] max-w-[100%] object-contain p-2"
+        className="max-h-[30rem] min-h-[30rem] min-w-[100%] max-w-[100%] object-cover p-2"
       />
       <div className="relative border-t-2 p-2">
         <button
@@ -43,13 +43,13 @@ const ProductGallery = ({ images }) => {
 
         <div
           ref={sliderRef}
-          className="scrollbar-hide flex justify-center gap-5 overflow-x-scroll scroll-smooth pl-10"
+          className="flex justify-center gap-5 overflow-x-scroll scroll-smooth pl-10 scrollbar-hide"
         >
           {images.map((img) => (
             <img
-              src={img.url + img.public_id}
-              alt=""
-              className="h-20 min-w-[5rem] cursor-pointer"
+              src={img}
+              alt="product-images"
+              className="h-20 min-w-[5rem] cursor-pointer border-r"
               onMouseOver={(e) => (targetImage.current.src = e.target.src)}
             />
           ))}

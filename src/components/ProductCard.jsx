@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
         <img
           src={product.thumbnail}
           alt="product image"
-          className="h-[15rem] w-[20rem] object-contain"
+          className="h-[15rem] w-[20rem] border object-cover"
         />
       </Link>
       <h1 className="text-3xl">{product.name}</h1>
