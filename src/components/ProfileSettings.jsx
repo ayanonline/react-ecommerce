@@ -35,7 +35,7 @@ const ProfileSettings = () => {
   });
 
   const clickHandler = () => {
-    formData.append("avatar", image);
+    if (image) formData.append("avatar", image);
     formData.append("email", email);
     formData.append("name", name);
     mutate();
