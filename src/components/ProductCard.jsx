@@ -1,9 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
+import { addToCart } from "../services/apiCart";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+
+  const { isLoading, mutate } = useMutation({
+    mutationFn: () => addToCart(product._id, quantity),
+    onSuccess: (data) => toast.success("Successfully added to cart"),
+    onError: () => toast.error("Failed to add in cart"),
+  });
 
   return (
     <div className="my-2 flex w-[25rem] flex-col items-center gap-4 rounded-md border px-10 py-4 shadow-lg">
@@ -29,7 +38,12 @@ const ProductCard = ({ product }) => {
       </p>
 
       <div>
-        <button className="rounded-md border px-3 text-center text-4xl hover:bg-green-500 hover:text-white">
+        <button
+          className="rounded-md border px-3 text-center text-4xl hover:bg-green-500 hover:text-white"
+          onClick={() => {
+            if (quantity > 1) setQuantity(quantity - 1);
+          }}
+        >
           -
         </button>
         <input
@@ -40,15 +54,18 @@ const ProductCard = ({ product }) => {
         />
         <button
           className="rounded-md border px-3 text-center text-4xl hover:bg-green-500 hover:text-white"
-          hover:bg-green-500
-          hover:text-white
+          onClick={() => setQuantity(quantity + 1)}
         >
           +
         </button>
       </div>
 
-      <button className="rounded-md border border-black px-20 py-4 text-xl hover:border-none hover:bg-green-500 hover:text-white">
-        Add to Cart
+      <button
+        className="rounded-md border border-black px-20 py-4 text-xl hover:border-none hover:bg-green-500 hover:text-white"
+        onClick={mutate}
+        disabled={isLoading}
+      >
+        {isLoading ? "Adding to cart..." : "Add to Cart"}
       </button>
     </div>
   );
