@@ -1,5 +1,4 @@
-import Cookies from "js-cookie";
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/actions/login";
@@ -15,24 +14,24 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLoading, user, isAuthenticated, error } = useSelector(
+  const { isLoading, isAuthenticated, error } = useSelector(
     (state) => state.user,
   );
 
   useEffect(() => {
-    isAuthenticated && navigate("/");
+    if (error) {
+      toast.error(error);
+    }
+    if (isAuthenticated) {
+      toast.success("Successfully logged in");
+      navigate("/");
+    }
   }, [isLoading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
   };
-  if (error) {
-    toast.error(error);
-  }
-  if (isAuthenticated) {
-    toast.success("Successfully logged in");
-  }
 
   return (
     <div className="flex h-[92vh]  select-none items-start bg-gray-100 px-[20rem] py-20">

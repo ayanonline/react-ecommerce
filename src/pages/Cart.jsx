@@ -11,9 +11,11 @@ const Cart = () => {
   if (isLoading) return null;
   return (
     <div className="bg-gray-100 px-[20rem] py-10">
-      {data.cart.items.map((item) => (
-        <CartProductCard key={item._id} product={item} />
-      ))}
+      <section>
+        {data.cart.items.map((item) => (
+          <CartProductCard key={item._id} product={item} />
+        ))}
+      </section>
     </div>
   );
 };
