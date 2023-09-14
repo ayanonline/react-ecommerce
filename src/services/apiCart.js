@@ -23,7 +23,7 @@ export const addToCart = async (productId, quantity) => {
 export const getAllCart = async () => {
   try {
     const res = await instance.get("http://localhost:4000/api/v1/cart/");
-    return res.data;
+    return res.data.cart;
   } catch (error) {
     throw error;
   }

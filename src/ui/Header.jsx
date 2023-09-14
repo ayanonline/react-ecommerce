@@ -35,10 +35,10 @@ const Header = () => {
             </li>
           </ul>
           <NavLink to="/cart">
-            <div className="relative cursor-pointer">
+            <div className="relative cursor-pointer pr-4">
               <SlBasketLoaded className="h-8 w-8" />
               {cart.length > 0 && (
-                <span className="absolute bottom-0 flex h-6 w-6 items-center justify-center rounded-full bg-green-400 text-sm font-bold text-white">
+                <span className="absolute right-0 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-green-400 text-sm font-bold text-white">
                   {cart.length}
                 </span>
               )}

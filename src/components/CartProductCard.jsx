@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { HiOutlineTrash } from "react-icons/hi";
 
 const CartProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(product.quantity);
   const { product: productDetails } = product;
 
   return (
-    <div className="my-4 w-[30rem] rounded-md bg-white p-4">
+    <div className="mb-4 w-[40rem] rounded-lg border-2 bg-white p-4">
       <div className="flex">
         <Link to={"/products/" + productDetails._id}>
           <img
@@ -16,15 +17,21 @@ const CartProductCard = ({ product }) => {
           />
         </Link>
 
-        <div className="flex w-full justify-around">
-          <div className="ml-2 flex flex-col items-start gap-2">
+        <div className="ml-4 flex w-full flex-col justify-around">
+          <div className="ml-2 flex items-center justify-between">
             <h1 className="text-2xl font-semibold">{productDetails.name}</h1>
-            <h2 className="text-lg">{productDetails.quantity}</h2>
-            <h3 className="text-2xl font-bold text-green-500">
-              ₹{productDetails.price}
-            </h3>
+            <h4 className="flex items-center text-xl">
+              subtotal:
+              <span className="text-2xl font-bold text-green-500">
+                ₹{product.subtotal}
+              </span>
+            </h4>
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex items-center gap-5">
+            <h2 className="text-lg">{productDetails.quantity}</h2>
+            <h3>price: ₹{productDetails.price}</h3>
+          </div>
+          <div className="flex items-center justify-between">
             <div>
               <button
                 className="rounded-md border px-2 text-center text-xl hover:bg-green-500 hover:text-white"
@@ -47,9 +54,7 @@ const CartProductCard = ({ product }) => {
                 +
               </button>
             </div>
-            <button className="rounded border-2 px-2 hover:border-none hover:bg-red-500 hover:text-white">
-              Remove
-            </button>
+            <HiOutlineTrash className="h-6 w-6 cursor-pointer text-red-500" />
           </div>
         </div>
       </div>
