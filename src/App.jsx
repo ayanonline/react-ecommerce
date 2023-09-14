@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./features/authentication/ProtectedRoute";
+import Order from "./pages/Order";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,10 +58,18 @@ const App = () => {
               <Route path="/signup" element={<Signup />} />
 
               <Route
-                path="/profile/"
+                path="/profile"
                 element={
                   <ProtectedRoute>
                     <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/order"
+                element={
+                  <ProtectedRoute>
+                    <Order />
                   </ProtectedRoute>
                 }
               />
