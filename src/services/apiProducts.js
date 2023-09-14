@@ -16,6 +16,6 @@ export const getAllproducts = async (
 
 export const getProductDetails = async (productId) => {
   const res = await fetch("http://localhost:4000/api/v1/products/" + productId);
-  const data = await res.json();
-  return data;
+  const json = await res.json();
+  return json.data;
 };

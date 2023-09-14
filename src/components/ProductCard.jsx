@@ -4,8 +4,8 @@ import { AiFillStar } from "react-icons/ai";
 import { addToCart } from "../services/apiCart";
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import toast from "react-hot-toast";
 import { updateCart } from "../store/slices/cartSlice";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);

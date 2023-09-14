@@ -48,7 +48,7 @@ const ProductDetails = () => {
     quantity: productQuantity,
     images,
     price,
-  } = productDetails.product;
+  } = productDetails;
 
   return (
     <div className="mx-[20rem] my-10 flex gap-8">

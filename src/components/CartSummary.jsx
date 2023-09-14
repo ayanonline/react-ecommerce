@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CartSummary = ({ cart }) => {
   return (
     <section className="w-[30rem] rounded-lg border-2 bg-white p-6">
@@ -14,9 +16,11 @@ const CartSummary = ({ cart }) => {
         <span className="font-bold text-green-500">₹{cart.totalAmount}</span>
       </div>
       <hr className="my-6" />
-      <button className="w-full bg-green-500 px-4 py-2 text-2xl text-white">
-        Proceed
-      </button>
+      <Link to="/order">
+        <button className="w-full bg-green-500 px-4 py-2 text-2xl text-white">
+          Proceed
+        </button>
+      </Link>
     </section>
   );
 };

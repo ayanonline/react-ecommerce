@@ -19,24 +19,24 @@ const Header = () => {
           <Search />
           <ul className="flex gap-5">
             <li>
-              <NavLink to="/" className="text-gray-400">
+              <NavLink to="/" className="text-xl text-gray-400">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/products" className="text-gray-400">
+              <NavLink to="/products" className="text-xl text-gray-400">
                 All products
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about" className="text-gray-400">
+              <NavLink to="/about" className="text-xl text-gray-400">
                 About
               </NavLink>
             </li>
           </ul>
           <NavLink to="/cart">
             <div className="relative cursor-pointer pr-4">
-              <SlBasketLoaded className="h-8 w-8" />
+              <SlBasketLoaded className="h-10 w-10" />
               {cart.length > 0 && (
                 <span className="absolute right-0 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-green-400 text-sm font-bold text-white">
                   {cart.length}

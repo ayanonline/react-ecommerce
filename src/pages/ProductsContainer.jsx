@@ -43,7 +43,7 @@ const ProductsContainer = () => {
       </p>
       <div className="my-8 flex w-[75vw] flex-wrap justify-center gap-5">
         {allProducts.products.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
       {totalPage > 1 && (
