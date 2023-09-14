@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductGallery from "../components/ProductGallery";
 import { useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProductDetails } from "../services/apiProducts";
+import { addToCart } from "../services/apiCart";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
@@ -12,6 +15,13 @@ const ProductDetails = () => {
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["productDetails", productId] });
   }, [productId, queryClient]);
+
+  // adding product into cart
+  const { isLoading: isAddingToCart, mutate } = useMutation({
+    mutationFn: () => addToCart(productId, quantity),
+    onSuccess: (data) => toast.success("Successfully added to cart"),
+    onError: () => toast.error("Failed to add in cart"),
+  });
 
   const {
     isLoading,
@@ -32,6 +42,7 @@ const ProductDetails = () => {
     images,
     price,
   } = productDetails.product;
+
   return (
     <div className="mx-[20rem] my-10 flex gap-8">
       <ProductGallery images={images} />
@@ -41,7 +52,12 @@ const ProductDetails = () => {
         <p className="capitalize">{description}</p>
         <p className="text-xl font-bold text-green-500">₹{price}</p>
         <div>
-          <button className="rounded-md border px-3 text-center text-2xl hover:bg-green-500 hover:text-white">
+          <button
+            className="rounded-md border px-3 text-center text-2xl hover:bg-green-500 hover:text-white"
+            onClick={() => {
+              if (quantity > 1) setQuantity(quantity - 1);
+            }}
+          >
             -
           </button>
           <input
@@ -52,15 +68,18 @@ const ProductDetails = () => {
           />
           <button
             className="rounded-md border px-3 text-center text-2xl hover:bg-green-500 hover:text-white"
-            hover:bg-green-500
-            hover:text-white
+            onClick={() => setQuantity(quantity + 1)}
           >
             +
           </button>
         </div>
 
-        <button className="rounded-md border bg-green-500 px-4 py-2 text-xl text-white">
-          Add to Cart
+        <button
+          className="rounded-md border bg-green-500 px-4 py-2 text-xl text-white"
+          onClick={mutate}
+          disabled={isAddingToCart}
+        >
+          {isAddingToCart ? "Adding to cart..." : "Add to Cart"}
         </button>
       </section>
     </div>

@@ -17,7 +17,6 @@ const ProductGallery = ({ images }) => {
     }
   };
 
-  console.log(images);
   return (
     <div className="min-w-[30vw] max-w-[30vw] border-2">
       <img
@@ -45,8 +44,9 @@ const ProductGallery = ({ images }) => {
           ref={sliderRef}
           className="flex justify-center gap-5 overflow-x-scroll scroll-smooth pl-10 scrollbar-hide"
         >
-          {images.map((img) => (
+          {images.map((img, index) => (
             <img
+              key={index}
               src={img}
               alt="product-images"
               className="h-20 min-w-[5rem] cursor-pointer border-r"
