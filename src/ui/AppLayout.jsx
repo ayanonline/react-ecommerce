@@ -8,6 +8,7 @@ import { authorizeUser } from "../store/actions/authorizeUser";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCart } from "../services/apiCart";
 import { updateCart } from "../store/slices/cartSlice";
+import axios from "axios";
 
 const AppLayout = () => {
   const [token] = useState(Cookies.get("token"));
@@ -21,16 +22,22 @@ const AppLayout = () => {
     }
   }, [token]);
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["cart"],
-    queryFn: getAllCart,
-  });
-
   useEffect(() => {
+    const instance = axios.create({
+      withCredentials: true,
+    });
     if (isAuthenticated) {
-      !isLoading && !error && dispatch(updateCart(data.cart.items));
+      async function fetchCart() {
+        try {
+          const res = await instance.get("http://localhost:4000/api/v1/cart/");
+          dispatch(updateCart(res.data.cart.items));
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchCart();
     }
-  }, [isLoading, error, data]);
+  }, [isAuthenticated]);
 
   return (
     <div>

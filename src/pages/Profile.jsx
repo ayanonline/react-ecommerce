@@ -3,12 +3,18 @@ import { logout } from "../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import ProfileSettings from "../components/ProfileSettings";
+import { updateCart } from "../store/slices/cartSlice";
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    dispatch(updateCart([]));
+    navigate("/");
+    toast.success("Successfully logout");
+  };
 
   return (
     <div className="mx-auto w-[40rem] py-5">
@@ -52,11 +58,7 @@ const Profile = () => {
       {/* logout */}
       <button
         className="bg-red-600 px-4 py-2 text-white"
-        onClick={() => {
-          dispatch(logout());
-          navigate("/");
-          toast.success("Successfully logout");
-        }}
+        onClick={logoutHandler}
       >
         Log out
       </button>
