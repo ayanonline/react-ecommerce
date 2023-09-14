@@ -6,11 +6,15 @@ import { getProductDetails } from "../services/apiProducts";
 import { addToCart } from "../services/apiCart";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { updateCart } from "../store/slices/cartSlice";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
   const queryClient = useQueryClient();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["productDetails", productId] });
@@ -19,7 +23,10 @@ const ProductDetails = () => {
   // adding product into cart
   const { isLoading: isAddingToCart, mutate } = useMutation({
     mutationFn: () => addToCart(productId, quantity),
-    onSuccess: (data) => toast.success("Successfully added to cart"),
+    onSuccess: (data) => {
+      dispatch(updateCart(data.cart.items));
+      toast.success("Successfully added to cart");
+    },
     onError: () => toast.error("Failed to add in cart"),
   });
 

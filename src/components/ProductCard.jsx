@@ -3,14 +3,20 @@ import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { addToCart } from "../services/apiCart";
 import { useMutation } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { updateCart } from "../store/slices/cartSlice";
 
 const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   const { isLoading, mutate } = useMutation({
     mutationFn: () => addToCart(product._id, quantity),
-    onSuccess: (data) => toast.success("Successfully added to cart"),
+    onSuccess: (data) => {
+      dispatch(updateCart(data.cart.items));
+      toast.success("Successfully added to cart");
+    },
     onError: () => toast.error("Failed to add in cart"),
   });
 
