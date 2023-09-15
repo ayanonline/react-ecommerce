@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllproducts } from "../services/apiProducts";
-import ProductCard from "../components/ProductCard";
 import { useSelector } from "react-redux";
+import ProductCard from "../components/ProductCard";
 
 const ProductsContainer = () => {
   const [page, setpage] = useState(1);

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { authorizeUser } from "../store/actions/authorizeUser";
+import { updateCart } from "../store/slices/cartSlice";
+
+import Cookies from "js-cookie";
 import Header from "./Header";
 import Footer from "./Footer";
-import { authorizeUser } from "../store/actions/authorizeUser";
-import { useQuery } from "@tanstack/react-query";
-import { getAllCart } from "../services/apiCart";
-import { updateCart } from "../store/slices/cartSlice";
 import axios from "axios";
 
 const AppLayout = () => {

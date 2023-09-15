@@ -1,5 +1,3 @@
-import React from "react";
-
 const Footer = () => {
   return (
     <footer className="flex gap-5 bg-green-100 px-[20rem] py-10">

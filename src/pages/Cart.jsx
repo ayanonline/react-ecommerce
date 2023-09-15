@@ -14,7 +14,6 @@ const Cart = () => {
   });
 
   if (isLoading) return null;
-  console.log(cart);
 
   return (
     <div className="flex items-start justify-between bg-gray-100 px-[20rem] py-10">

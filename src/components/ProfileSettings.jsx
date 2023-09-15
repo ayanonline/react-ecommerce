@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdModeEditOutline } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
 import { updateUserProfile } from "../services/user";
-import toast from "react-hot-toast";
 import { updateUser } from "../store/slices/userSlice";
+import toast from "react-hot-toast";
 
 const ProfileSettings = () => {
   const { user } = useSelector((state) => state.user);

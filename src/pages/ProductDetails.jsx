@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import ProductGallery from "../components/ProductGallery";
 import { useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProductDetails } from "../services/apiProducts";
 import { addToCart } from "../services/apiCart";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { updateCart } from "../store/slices/cartSlice";
+import ProductGallery from "../components/ProductGallery";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);

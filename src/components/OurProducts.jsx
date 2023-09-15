@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import ProductCard from "./ProductCard";
 import { getAllproducts } from "../services/apiProducts";
 import { Link } from "react-router-dom";
+import ProductCard from "./ProductCard";
 
 const Button = ({ title }) => {
   return (

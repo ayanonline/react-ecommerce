@@ -1,5 +1,3 @@
-import React from "react";
-
 const OfferCard = ({ img, price, title }) => {
   return (
     <div className="flex h-56 rounded-md bg-[#ffe9e8] px-2 py-6">

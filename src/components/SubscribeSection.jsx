@@ -1,5 +1,3 @@
-import React from "react";
-
 const SubscribeSection = () => {
   return (
     <section className="bg-green-100 py-10 text-center">

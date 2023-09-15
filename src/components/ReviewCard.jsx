@@ -1,5 +1,3 @@
-import React from "react";
-
 const ReviewCard = () => {
   return (
     <div className="relative mr-4 min-w-[39rem] rounded-md border p-4 shadow-xl">

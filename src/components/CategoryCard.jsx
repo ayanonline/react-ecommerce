@@ -1,5 +1,3 @@
-import React from "react";
-
 const CategoryCard = ({ title, bg, img }) => {
   return (
     <div

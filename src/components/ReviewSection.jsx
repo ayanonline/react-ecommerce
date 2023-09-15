@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import ReviewCard from "./ReviewCard";
 import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,
 } from "react-icons/hi";
+import ReviewCard from "./ReviewCard";
 
 const ReviewSection = () => {
   const sliderRef = useRef(null);
@@ -36,7 +36,7 @@ const ReviewSection = () => {
       </button>
       <div
         ref={sliderRef}
-        className="scrollbar-hide mt-5 flex overflow-x-scroll scroll-smooth"
+        className="mt-5 flex overflow-x-scroll scroll-smooth scrollbar-hide"
       >
         <ReviewCard />
         <ReviewCard />

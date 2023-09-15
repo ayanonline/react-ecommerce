@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { updateCart } from "../store/slices/cartSlice";
 import toast from "react-hot-toast";
 import ProfileSettings from "../components/ProfileSettings";
-import { updateCart } from "../store/slices/cartSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
