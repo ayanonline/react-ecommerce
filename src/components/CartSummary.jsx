@@ -12,7 +12,7 @@ const CartSummary = ({ cart }) => {
         </span>
       </div>
       <div className="mt-5 flex justify-between text-2xl">
-        <span>Subtotal</span>
+        <span>Total</span>
         <span className="font-bold text-green-500">₹{cart.totalAmount}</span>
       </div>
       <hr className="my-6" />

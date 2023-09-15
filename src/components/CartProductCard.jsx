@@ -25,6 +25,7 @@ const CartProductCard = ({ product }) => {
       dispatch(updateCart(data.cart.items));
       toast.success("Item deleted from cart successfully");
     },
+    onError: (err) => toast.error(err.message),
   });
 
   return (
@@ -42,7 +43,7 @@ const CartProductCard = ({ product }) => {
           <div className="ml-2 flex items-center justify-between">
             <h1 className="text-2xl font-semibold">{productDetails.name}</h1>
             <h4 className="flex items-center text-2xl">
-              subtotal:
+              Subtotal:
               <span className="ml-2 text-2xl font-bold text-green-500">
                 ₹{product.subtotal}
               </span>
