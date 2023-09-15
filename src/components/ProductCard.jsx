@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { addToCart } from "../services/apiCart";
 import { useMutation } from "@tanstack/react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../store/slices/cartSlice";
 import toast from "react-hot-toast";
 
 const ProductCard = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: () => addToCart(product._id, quantity),
+    mutationFn: () => addToCart(product._id),
     onSuccess: (data) => {
       dispatch(updateCart(data.cart.items));
       toast.success("Successfully added to cart");
@@ -43,35 +42,12 @@ const ProductCard = ({ product }) => {
         <span className="ml-4 text-green-500">₹{product.price}</span>
       </p>
 
-      <div>
-        <button
-          className="rounded-md border px-3 text-center text-4xl hover:bg-green-500 hover:text-white"
-          onClick={() => {
-            if (quantity > 1) setQuantity(quantity - 1);
-          }}
-        >
-          -
-        </button>
-        <input
-          type="text"
-          className="w-10 text-center text-3xl outline-none"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-        <button
-          className="rounded-md border px-3 text-center text-4xl hover:bg-green-500 hover:text-white"
-          onClick={() => setQuantity(quantity + 1)}
-        >
-          +
-        </button>
-      </div>
-
       <button
         className="rounded-md border border-black px-20 py-4 text-xl hover:border-none hover:bg-green-500 hover:text-white"
         onClick={mutate}
         disabled={isLoading}
       >
-        {isLoading ? "Adding to cart..." : "Add to Cart"}
+        {isLoading ? "Adding to cart..." : "Add to cart"}
       </button>
     </div>
   );

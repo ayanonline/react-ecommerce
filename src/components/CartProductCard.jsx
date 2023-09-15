@@ -20,9 +20,9 @@ const CartProductCard = ({ product }) => {
         <div className="ml-4 flex w-full flex-col justify-around">
           <div className="ml-2 flex items-center justify-between">
             <h1 className="text-2xl font-semibold">{productDetails.name}</h1>
-            <h4 className="flex items-center text-xl">
+            <h4 className="flex items-center text-2xl">
               subtotal:
-              <span className="text-2xl font-bold text-green-500">
+              <span className="ml-2 text-2xl font-bold text-green-500">
                 ₹{product.subtotal}
               </span>
             </h4>

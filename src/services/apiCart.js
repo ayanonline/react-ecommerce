@@ -4,11 +4,11 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export const addToCart = async (productId, quantity) => {
+export const addToCart = async (productId, quantity = 1) => {
   try {
     const res = await instance({
       method: "POST",
-      url: "http://localhost:4000/api/v1/cart/add",
+      url: "http://localhost:4000/api/v1/cart/",
       data: {
         productId,
         quantity,
