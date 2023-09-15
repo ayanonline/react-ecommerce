@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <section className="flex items-stretch justify-between bg-[#D9F5DA] px-[20rem]">
@@ -12,9 +14,11 @@ const Banner = () => {
           Maga ullamcorper commodo hac eu scelerisque. Sit varius <br />
           dictum ac ornare ullamcorper nisi
         </p>
-        <button className="rounded-md bg-green-500 px-10 py-4 text-lg font-semibold text-white">
-          Shop Now
-        </button>
+        <Link to="/products">
+          <button className="rounded-md bg-green-500 px-10 py-4 text-lg font-semibold text-white">
+            Shop Now
+          </button>
+        </Link>
       </div>
       <img src="/banner.png" alt="banner img" />
     </section>

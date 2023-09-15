@@ -40,7 +40,7 @@ const CartProductCard = ({ product }) => {
         </Link>
 
         <div className="ml-4 flex w-full flex-col justify-around">
-          <div className="ml-2 flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold">{productDetails.name}</h1>
             <h4 className="flex items-center text-2xl">
               Subtotal:
@@ -50,8 +50,8 @@ const CartProductCard = ({ product }) => {
             </h4>
           </div>
           <div className="flex items-center gap-5">
-            <h2 className="text-lg">{productDetails.quantity}</h2>
-            <h3>price: ₹{productDetails.price}</h3>
+            {/* <h2 className="text-lg">{productDetails.quantity}</h2> */}
+            <h3>Price: ₹{productDetails.price}</h3>
           </div>
           <div className="flex items-center justify-between">
             <div>
