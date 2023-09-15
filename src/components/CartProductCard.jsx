@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
 
 const CartProductCard = ({ product }) => {
-  const [quantity, setQuantity] = useState(product.quantity);
+  const [quantity, setQuantity] = useState(null);
+
+  useEffect(() => {
+    setQuantity(product.quantity);
+  }, [product.quantity]);
+
   const { product: productDetails } = product;
 
   return (
