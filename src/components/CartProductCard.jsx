@@ -1,15 +1,31 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
+import { deleteItem } from "../services/apiCart";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { updateCart } from "../store/slices/cartSlice";
 
 const CartProductCard = ({ product }) => {
-  const [quantity, setQuantity] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const queryClient = useQueryClient();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setQuantity(product.quantity);
   }, [product.quantity]);
 
   const { product: productDetails } = product;
+
+  const { isLoading, mutate } = useMutation({
+    mutationFn: () => deleteItem(productDetails._id),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+      dispatch(updateCart(data.cart.items));
+      toast.success("Item deleted from cart successfully");
+    },
+  });
 
   return (
     <div className="mb-4 w-[40rem] rounded-lg border-2 bg-white p-4">
@@ -59,7 +75,9 @@ const CartProductCard = ({ product }) => {
                 +
               </button>
             </div>
-            <HiOutlineTrash className="h-6 w-6 cursor-pointer text-red-500" />
+            <button onClick={mutate} disabled={isLoading}>
+              <HiOutlineTrash className="h-6 w-6 cursor-pointer text-red-500" />
+            </button>
           </div>
         </div>
       </div>
