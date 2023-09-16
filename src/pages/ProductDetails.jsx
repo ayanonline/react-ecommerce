@@ -67,12 +67,7 @@ const ProductDetails = () => {
           >
             -
           </button>
-          <input
-            type="text"
-            className="w-10 text-center text-2xl outline-none"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
+          <span className="px-2 text-xl">{quantity}</span>
           <button
             className="rounded-md border px-3 text-center text-2xl hover:bg-green-500 hover:text-white"
             onClick={() => setQuantity(quantity + 1)}

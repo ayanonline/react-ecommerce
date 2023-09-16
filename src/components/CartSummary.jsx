@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const CartSummary = ({ cart }) => {
   return (
-    <section className="w-[30rem] rounded-lg border-2 bg-white p-6">
+    <section className="sticky top-28 w-[30rem] rounded-lg border-2 bg-white p-6">
       <h1 className="text-3xl">Cart summary</h1>
       <hr className="my-6" />
       <div className="flex justify-between text-2xl">
