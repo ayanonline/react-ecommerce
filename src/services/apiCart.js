@@ -37,7 +37,22 @@ export const deleteItem = async (productId) => {
     const res = await instance.delete(
       `http://localhost:4000/api/v1/cart/${productId}`,
     );
-    console.log(res);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// update
+export const updateItem = async (productId, quantity) => {
+  try {
+    const res = await instance({
+      method: "PATCH",
+      url: `http://localhost:4000/api/v1/cart/${productId}`,
+      data: {
+        quantity,
+      },
+    });
     return res.data;
   } catch (error) {
     throw error;

@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
-import { deleteItem } from "../services/apiCart";
+import { deleteItem, updateItem } from "../services/apiCart";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { updateCart } from "../store/slices/cartSlice";
+import toast from "react-hot-toast";
 
 const CartProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const [isQuntityChanged, setIsQuantityChanged] = useState(false);
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
 
@@ -16,14 +17,30 @@ const CartProductCard = ({ product }) => {
     setQuantity(product.quantity);
   }, [product.quantity]);
 
+  useEffect(() => {
+    if (isQuntityChanged) {
+      updateHandle();
+      setIsQuantityChanged(false);
+    }
+  }, [quantity]);
+
   const { product: productDetails } = product;
 
-  const { isLoading, mutate } = useMutation({
+  const { isLoading: isDeleting, mutate: deleteHandle } = useMutation({
     mutationFn: () => deleteItem(productDetails._id),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
       dispatch(updateCart(data.cart.items));
       toast.success("Item deleted from cart successfully");
+    },
+    onError: (err) => toast.error(err.message),
+  });
+
+  const { isLoading: isUpdating, mutate: updateHandle } = useMutation({
+    mutationFn: () => updateItem(productDetails._id, quantity),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+      dispatch(updateCart(data.cart.items));
     },
     onError: (err) => toast.error(err.message),
   });
@@ -50,33 +67,35 @@ const CartProductCard = ({ product }) => {
             </h4>
           </div>
           <div className="flex items-center gap-5">
-            {/* <h2 className="text-lg">{productDetails.quantity}</h2> */}
             <h3>Price: ₹{productDetails.price}</h3>
           </div>
           <div className="flex items-center justify-between">
             <div>
               <button
+                disabled={isUpdating || isDeleting}
                 className="rounded-md border px-2 text-center text-xl hover:bg-green-500 hover:text-white"
                 onClick={() => {
-                  if (quantity > 1) setQuantity(quantity - 1);
+                  if (quantity > 1) {
+                    setQuantity(quantity - 1);
+                    setIsQuantityChanged(true);
+                  }
                 }}
               >
                 -
               </button>
-              <input
-                type="text"
-                className="w-10 text-center text-xl outline-none"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-              />
+              <span className="px-2">{quantity}</span>
               <button
+                disabled={isUpdating || isDeleting}
                 className="rounded-md border px-2 text-center text-xl hover:bg-green-500 hover:text-white"
-                onClick={() => setQuantity(quantity + 1)}
+                onClick={() => {
+                  setQuantity(quantity + 1);
+                  setIsQuantityChanged(true);
+                }}
               >
                 +
               </button>
             </div>
-            <button onClick={mutate} disabled={isLoading}>
+            <button onClick={deleteHandle} disabled={isDeleting}>
               <HiOutlineTrash className="h-6 w-6 cursor-pointer text-red-500" />
             </button>
           </div>
