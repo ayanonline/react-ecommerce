@@ -8,12 +8,12 @@ const CartSummary = ({ cart }) => {
       <div className="flex justify-between text-2xl">
         <span>Orders</span>
         <span className="flex w-20 items-center justify-center bg-green-500 text-lg text-white">
-          {cart.totalItems} items
+          {cart?.totalItems} items
         </span>
       </div>
       <div className="mt-5 flex justify-between text-2xl">
         <span>Total</span>
-        <span className="font-bold text-green-500">₹{cart.totalAmount}</span>
+        <span className="font-bold text-green-500">₹{cart?.totalAmount}</span>
       </div>
       <hr className="my-6" />
       <Link to="/order">
