@@ -20,12 +20,12 @@ const Order = () => {
   if (isLoading) return null;
 
   return (
-    <div className="flex items-start justify-between px-[20rem] py-10">
+    <div className="flex min-h-screen items-start justify-between px-[20rem] py-10">
       <section>
         <h1 className="mb-2 text-2xl">Select delivery address</h1>
         <div className="flex w-[50rem] flex-col gap-2">
           {address.map((item) => (
-            <AddressCard address={item} />
+            <AddressCard key={item._id} address={item} />
           ))}
         </div>
         {!showAddressForm && (
@@ -37,7 +37,9 @@ const Order = () => {
           </button>
         )}
 
-        {showAddressForm && <AddressForm hideForm={setShowAddressForm} />}
+        {showAddressForm && (
+          <AddressForm formName="create" hideForm={setShowAddressForm} />
+        )}
       </section>
       <CartSummary />
     </div>

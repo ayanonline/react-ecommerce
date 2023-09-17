@@ -4,7 +4,7 @@ const Loader = () => {
   return (
     <svg
       aria-hidden="true"
-      class="absolute left-[40%] top-[40%] mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
+      className="absolute left-[40%] top-[40%] mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

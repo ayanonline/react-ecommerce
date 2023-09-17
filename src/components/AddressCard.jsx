@@ -36,7 +36,7 @@ const AddressCard = ({ address }) => {
   return (
     <div>
       {showForm ? (
-        <AddressForm hideForm={setShowForm} data={address} />
+        <AddressForm formName="update" hideForm={setShowForm} data={address} />
       ) : (
         <div className="relative mb-2 flex w-[40rem] items-center rounded-md border-2 p-4">
           {isUpdating && <Loader />}

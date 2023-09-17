@@ -1,4 +1,7 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { createAddress as createAddressApi } from "../services/apiAddress";
+import toast from "react-hot-toast";
 
 const Input = ({ name, state, handler }) => {
   return (
@@ -14,22 +17,46 @@ const Input = ({ name, state, handler }) => {
     </div>
   );
 };
-const AddressForm = ({ hideForm, data }) => {
-  const [name, setName] = useState(data?.name);
-  const [phone, setPhone] = useState(data?.phoneNumber);
-  const [pincode, setPincode] = useState(data?.pincode);
-  const [locality, setLocality] = useState(data?.locality);
-  const [address, setAddress] = useState(data?.address);
-  const [city, setCity] = useState(data?.city);
+const AddressForm = ({ formName, hideForm, data }) => {
+  const [name, setName] = useState(data ? data.name : "");
+  const [phone, setPhone] = useState(data ? data.phoneNumber : "");
+  const [pincode, setPincode] = useState(data ? data.pincode : "");
+  const [locality, setLocality] = useState(data ? data.locality : "");
+  const [address, setAddress] = useState(data ? data.address : "");
+  const [city, setCity] = useState(data ? data.city : "");
+  const [state, setState] = useState(data ? data.state : "");
+
+  const formData = new FormData();
+  const queryClient = useQueryClient();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("form submitted");
-    hideForm();
+    formData.append("name", name);
+    formData.append("phoneNumber", phone);
+    formData.append("pincode", pincode);
+    formData.append("locality", locality);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+
+    if (formName === "create") createAddress();
   };
 
+  const { isCreating, mutate: createAddress } = useMutation({
+    mutationFn: () => createAddressApi(formData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["address"] });
+      toast.success("Address created");
+      hideForm();
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
   return (
-    <div className="relative">
+    <div className="relative my-2">
+      <h1 className="text-xl">
+        {formName === "update" ? "Update address" : "Create address"}
+      </h1>
       <form
         className="flex w-[40rem] flex-wrap justify-between gap-2"
         onSubmit={submitHandler}
@@ -55,45 +82,53 @@ const AddressForm = ({ hideForm, data }) => {
         <div className="my-2 h-fit w-[19rem] border-2 px-2 py-1">
           <label className="text-sm text-gray-500">State</label>
           <br />
-          <select name="" id="" className=" w-full bg-white outline-none">
-            <option value="">Select state</option>
-            <option value="AN">Andaman and Nicobar Islands</option>
-            <option value="AP">Andhra Pradesh</option>
-            <option value="AR">Arunachal Pradesh</option>
-            <option value="AS">Assam</option>
-            <option value="BR">Bihar</option>
-            <option value="CH">Chandigarh</option>
-            <option value="CT">Chhattisgarh</option>
-            <option value="DN">Dadra and Nagar Haveli</option>
-            <option value="DD">Daman and Diu</option>
-            <option value="DL">Delhi</option>
-            <option value="GA">Goa</option>
-            <option value="GJ">Gujarat</option>
-            <option value="HR">Haryana</option>
-            <option value="HP">Himachal Pradesh</option>
-            <option value="JK">Jammu and Kashmir</option>
-            <option value="JH">Jharkhand</option>
-            <option value="KA">Karnataka</option>
-            <option value="KL">Kerala</option>
-            <option value="LA">Ladakh</option>
-            <option value="LD">Lakshadweep</option>
-            <option value="MP">Madhya Pradesh</option>
-            <option value="MH">Maharashtra</option>
-            <option value="MN">Manipur</option>
-            <option value="ML">Meghalaya</option>
-            <option value="MZ">Mizoram</option>
-            <option value="NL">Nagaland</option>
-            <option value="OR">Odisha</option>
-            <option value="PY">Puducherry</option>
-            <option value="PB">Punjab</option>
-            <option value="RJ">Rajasthan</option>
-            <option value="SK">Sikkim</option>
-            <option value="TN">Tamil Nadu</option>
-            <option value="TG">Telangana</option>
-            <option value="TR">Tripura</option>
-            <option value="UP">Uttar Pradesh</option>
-            <option value="UT">Uttarakhand</option>
-            <option value="WB">West Bengal</option>
+          <select
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            className="w-full bg-white outline-none"
+          >
+            <option value="">{state ? state : "select state"}</option>
+            <option value="Andaman and Nicobar Islands">
+              Andaman and Nicobar Islands
+            </option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadra and Nagar Haveli">
+              Dadra and Nagar Haveli
+            </option>
+            <option value="Daman and Diu">Daman and Diu</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Ladakh">Ladakh</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
           </select>
         </div>
         <div className="flex gap-5">
