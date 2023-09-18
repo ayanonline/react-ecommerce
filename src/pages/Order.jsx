@@ -4,10 +4,10 @@ import AddressForm from "../components/AddressForm";
 import CartSummary from "../components/CartSummary";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getAddress } from "../services/apiAddress";
-import toast from "react-hot-toast";
 
 const Order = () => {
   const [showAddressForm, setShowAddressForm] = useState(false);
+  const [isAddressSelected, setIsAddressSelected] = useState(false);
 
   const {
     isLoading,
@@ -16,11 +16,15 @@ const Order = () => {
   } = useQuery({
     queryFn: getAddress,
     queryKey: ["address"],
+    onSuccess: (data) => {
+      const selectedAddress = data.filter((item) => item.selected);
+      setIsAddressSelected(selectedAddress.length > 0);
+    },
   });
   if (isLoading) return null;
 
   return (
-    <div className="flex min-h-screen items-start justify-between px-[20rem] py-10">
+    <div className="relative flex min-h-screen items-start justify-between px-[20rem] py-10">
       <section>
         <h1 className="mb-2 text-2xl">Select delivery address</h1>
         <div className="flex w-[50rem] flex-col gap-2">

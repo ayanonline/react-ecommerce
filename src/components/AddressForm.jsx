@@ -100,7 +100,7 @@ const AddressForm = ({ formName, hideForm, data }) => {
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            className="w-full bg-white outline-none"
+            className="w-full cursor-pointer bg-white outline-none"
           >
             <option value="">{state ? state : "select state"}</option>
             <option value="Andaman and Nicobar Islands">
