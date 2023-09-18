@@ -1,6 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { createAddress as createAddressApi } from "../services/apiAddress";
+import {
+  createAddress as createAddressApi,
+  updateAddress as updateAddressApi,
+} from "../services/apiAddress";
 import toast from "react-hot-toast";
 
 const Input = ({ name, state, handler }) => {
@@ -17,6 +20,7 @@ const Input = ({ name, state, handler }) => {
     </div>
   );
 };
+
 const AddressForm = ({ formName, hideForm, data }) => {
   const [name, setName] = useState(data ? data.name : "");
   const [phone, setPhone] = useState(data ? data.phoneNumber : "");
@@ -40,13 +44,24 @@ const AddressForm = ({ formName, hideForm, data }) => {
     formData.append("state", state);
 
     if (formName === "create") createAddress();
+    if (formName === "update") updateAddress();
   };
 
-  const { isCreating, mutate: createAddress } = useMutation({
+  const { isLoading: isCreating, mutate: createAddress } = useMutation({
     mutationFn: () => createAddressApi(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["address"] });
       toast.success("Address created");
+      hideForm();
+    },
+    onError: (error) => toast.error(error.message),
+  });
+
+  const { isLoading: isUpdating, mutate: updateAddress } = useMutation({
+    mutationFn: () => updateAddressApi(data._id, formData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["address"] });
+      toast.success("Address updated");
       hideForm();
     },
     onError: (error) => toast.error(error.message),
@@ -132,7 +147,11 @@ const AddressForm = ({ formName, hideForm, data }) => {
           </select>
         </div>
         <div className="flex gap-5">
-          <button type="submit" className="bg-green-500 px-3 py-2 text-white">
+          <button
+            disabled={isCreating || isUpdating}
+            type="submit"
+            className="bg-green-500 px-3 py-2 text-white"
+          >
             Save address
           </button>
         </div>

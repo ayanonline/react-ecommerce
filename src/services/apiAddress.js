@@ -15,24 +15,25 @@ export const getAddress = async () => {
   }
 };
 
-export const updateAddress = async (addressId, data) => {
+export const selectAddress = async (addressId) => {
   try {
     const res = await instance({
       method: "PATCH",
       url: `http://localhost:4000/api/v1/address/${addressId}`,
-      data: data,
+      data: { selected: true },
     });
     return res.data;
   } catch (error) {
     throw error;
   }
 };
-
-export const deleteAddress = async (addressId) => {
+export const updateAddress = async (addressId, formData) => {
   try {
-    const res = await instance.delete(
-      `http://localhost:4000/api/v1/address/${addressId}`,
-    );
+    const res = await instance({
+      method: "PATCH",
+      url: `http://localhost:4000/api/v1/address/${addressId}`,
+      data: Object.fromEntries(formData.entries()),
+    });
     return res.data;
   } catch (error) {
     throw error;
@@ -44,6 +45,17 @@ export const createAddress = async (data) => {
     const res = await instance.post(
       "http://localhost:4000/api/v1/address",
       Object.fromEntries(data.entries()),
+    );
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteAddress = async (addressId) => {
+  try {
+    const res = await instance.delete(
+      `http://localhost:4000/api/v1/address/${addressId}`,
     );
     return res.data;
   } catch (error) {

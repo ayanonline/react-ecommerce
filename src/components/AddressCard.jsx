@@ -4,7 +4,7 @@ import { HiOutlineTrash } from "react-icons/hi";
 import AddressForm from "./AddressForm";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  updateAddress,
+  selectAddress,
   deleteAddress as deleteApi,
 } from "../services/apiAddress";
 import toast from "react-hot-toast";
@@ -16,14 +16,15 @@ const AddressCard = ({ address }) => {
   const queryClient = useQueryClient();
 
   const changeHandler = () => {
-    if (address?.selected === false) update();
+    if (address?.selected === false) select();
   };
 
-  const { isLoading: isUpdating, mutate: update } = useMutation({
-    mutationFn: () => updateAddress(address._id, { selected: true }),
+  const { isLoading: isSelecting, mutate: select } = useMutation({
+    mutationFn: () => selectAddress(address._id),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["address"] }),
     onError: (error) => toast.error(error.message),
   });
+
   const { isLoading: isDeleting, mutate: deleteAddress } = useMutation({
     mutationFn: () => deleteApi(address._id),
     onSuccess: () => {
@@ -39,12 +40,12 @@ const AddressCard = ({ address }) => {
         <AddressForm formName="update" hideForm={setShowForm} data={address} />
       ) : (
         <div className="relative mb-2 flex w-[40rem] items-center rounded-md border-2 p-4">
-          {isUpdating && <Loader />}
+          {isSelecting && <Loader />}
           <input
             type="radio"
             checked={address?.selected}
             onChange={changeHandler}
-            disabled={isUpdating}
+            disabled={isSelecting}
             className="mr-4 h-6 w-6 cursor-pointer"
           />
           <div>
