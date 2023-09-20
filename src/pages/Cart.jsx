@@ -3,16 +3,10 @@ import { getAllCart } from "../services/apiCart";
 import CartProductCard from "../components/CartProductCard";
 import CartSummary from "../components/CartSummary";
 import EmptyCart from "../components/EmptyCart";
+import useCart from "../hooks/useCart";
 
 const Cart = () => {
-  const {
-    isLoading,
-    error,
-    data: cart,
-  } = useQuery({
-    queryKey: ["cart"],
-    queryFn: getAllCart,
-  });
+  const { isLoading, error, cart } = useCart();
 
   if (isLoading) return null;
 

@@ -1,13 +1,14 @@
 import { useState } from "react";
 import AddressCard from "../components/AddressCard";
 import AddressForm from "../components/AddressForm";
-import CartSummary from "../components/CartSummary";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getAddress } from "../services/apiAddress";
+import OrderSummary from "../components/OrderSummary";
 
 const Order = () => {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [isAddressSelected, setIsAddressSelected] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState([]);
 
   const {
     isLoading,
@@ -17,10 +18,14 @@ const Order = () => {
     queryFn: getAddress,
     queryKey: ["address"],
     onSuccess: (data) => {
-      const selectedAddress = data.filter((item) => item.selected);
-      setIsAddressSelected(selectedAddress.length > 0);
+      const currentAddress = data.filter((item) => item.selected);
+      setIsAddressSelected(currentAddress.length > 0);
+      setSelectedAddress(currentAddress);
     },
   });
+
+  // const checkoutHandler
+
   if (isLoading) return null;
 
   return (
@@ -45,7 +50,10 @@ const Order = () => {
           <AddressForm formName="create" hideForm={setShowAddressForm} />
         )}
       </section>
-      <CartSummary />
+      <OrderSummary
+        isAddressSelected={isAddressSelected}
+        selectedAddress={selectedAddress}
+      />
     </div>
   );
 };
