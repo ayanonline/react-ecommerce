@@ -1,23 +1,9 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import { addToCart } from "../../services/apiCart";
-import { useMutation } from "@tanstack/react-query";
-import { useDispatch, useSelector } from "react-redux";
-import { updateCart } from "../../store/slices/cartSlice";
-import toast from "react-hot-toast";
+import useAddToCart from "../../hooks/useAddToCart";
 
 const ProductCard = ({ product }) => {
-  const dispatch = useDispatch();
-
-  const { isLoading, mutate } = useMutation({
-    mutationFn: () => addToCart(product._id),
-    onSuccess: (data) => {
-      dispatch(updateCart(data.cart.items));
-      toast.success("Successfully added to cart");
-    },
-    onError: () => toast.error("Failed to add in cart"),
-  });
+  const { isAddingToCart, addToCart } = useAddToCart(product._id);
 
   return (
     <div className="my-2 flex w-[25rem] flex-col items-center gap-4 rounded-md border px-10 py-4 shadow-lg">
@@ -44,10 +30,10 @@ const ProductCard = ({ product }) => {
 
       <button
         className="rounded-md border border-black px-20 py-4 text-xl hover:border-none hover:bg-green-500 hover:text-white"
-        onClick={mutate}
-        disabled={isLoading}
+        onClick={addToCart}
+        disabled={isAddingToCart}
       >
-        {isLoading ? "Adding to cart..." : "Add to cart"}
+        {isAddingToCart ? "Adding to cart..." : "Add to cart"}
       </button>
     </div>
   );
