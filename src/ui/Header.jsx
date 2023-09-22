@@ -28,11 +28,6 @@ const Header = () => {
                 All products
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/about" className="text-xl text-gray-400">
-                About
-              </NavLink>
-            </li>
           </ul>
           <NavLink to="/cart">
             <div className="relative cursor-pointer pr-4">
