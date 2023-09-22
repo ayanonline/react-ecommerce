@@ -6,9 +6,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   selectAddress,
   deleteAddress as deleteApi,
-} from "../services/apiAddress";
+} from "../../services/apiAddress";
 import toast from "react-hot-toast";
-import Loader from "../ui/Loader";
+import Loader from "../../ui/Loader";
 
 const AddressCard = ({ address }) => {
   const [showForm, setShowForm] = useState(false);

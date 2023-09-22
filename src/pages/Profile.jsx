@@ -3,7 +3,7 @@ import { logout } from "../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { updateCart } from "../store/slices/cartSlice";
 import toast from "react-hot-toast";
-import ProfileSettings from "../components/ProfileSettings";
+import ProfileSettings from "../features/profile/ProfileSettings";
 
 const Profile = () => {
   const dispatch = useDispatch();

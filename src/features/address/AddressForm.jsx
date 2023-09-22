@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   createAddress as createAddressApi,
   updateAddress as updateAddressApi,
-} from "../services/apiAddress";
+} from "../../services/apiAddress";
 import toast from "react-hot-toast";
 
 const Input = ({ name, state, handler }) => {

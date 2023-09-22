@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import { addToCart } from "../services/apiCart";
+import { addToCart } from "../../services/apiCart";
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCart } from "../store/slices/cartSlice";
+import { updateCart } from "../../store/slices/cartSlice";
 import toast from "react-hot-toast";
 
 const ProductCard = ({ product }) => {

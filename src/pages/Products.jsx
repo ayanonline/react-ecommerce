@@ -1,5 +1,5 @@
-import Filters from "../features/Filters";
-import ProductsContainer from "./ProductsContainer";
+import Filters from "../features/filters/Filters";
+import ProductsContainer from "../features/products/ProductsContainer";
 
 const Products = () => {
   return (

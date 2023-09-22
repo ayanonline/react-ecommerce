@@ -1,7 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { getAllproducts } from "../services/apiProducts";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
+import useProducts from "../../hooks/useProducts";
 
 const Button = ({ title }) => {
   return (
@@ -12,11 +11,7 @@ const Button = ({ title }) => {
 };
 
 const OurProducts = () => {
-  const {
-    isLoading,
-    data: productsData,
-    error,
-  } = useQuery({ queryKey: ["ourProducts"], queryFn: () => getAllproducts(6) });
+  const { isLoading, productsData, error } = useProducts(6);
 
   return (
     <section className="mx-[20rem] py-8">

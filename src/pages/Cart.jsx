@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllCart } from "../services/apiCart";
-import CartProductCard from "../components/CartProductCard";
-import CartSummary from "../components/CartSummary";
-import EmptyCart from "../components/EmptyCart";
+import CartProductCard from "../features/cart/CartProductCard";
+import CartSummary from "../features/cart/CartSummary";
+import EmptyCart from "../features/cart/EmptyCart";
 import useCart from "../hooks/useCart";
 
 const Cart = () => {

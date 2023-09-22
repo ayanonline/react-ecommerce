@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
-import { deleteItem, updateItem } from "../services/apiCart";
+import { deleteItem, updateItem } from "../../services/apiCart";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { updateCart } from "../store/slices/cartSlice";
+import { updateCart } from "../../store/slices/cartSlice";
 import toast from "react-hot-toast";
 
 const CartProductCard = ({ product }) => {

@@ -1,5 +1,5 @@
-import useCart from "../hooks/useCart";
-import { createOrder } from "../services/order";
+import useCart from "../../hooks/useCart";
+import { createOrder } from "../../services/order";
 
 const OrderSummary = ({ isAddressSelected, selectedAddress }) => {
   const { isLoading, error, cart } = useCart();

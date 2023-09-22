@@ -1,8 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { getAllproducts } from "../services/apiProducts";
 import { useSelector } from "react-redux";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "./ProductCard";
+import useProducts from "../../hooks/useProducts";
 
 const ProductsContainer = () => {
   const [page, setpage] = useState(1);
@@ -12,25 +11,24 @@ const ProductsContainer = () => {
     window.scrollTo(0, 0);
   }, [page]);
 
-  const {
-    isLoading,
-    data: allProducts,
-    error,
-  } = useQuery({
-    queryKey: ["products", [page, category, ratings, maxPrice]],
-    queryFn: () => getAllproducts(9, page, category, ratings, maxPrice),
-  });
+  const { isLoading, productsData, error } = useProducts(
+    9,
+    page,
+    category,
+    ratings,
+    maxPrice,
+  );
 
   // early returning
   if (isLoading) return <h1>loading</h1>;
 
   // calculating total page count
   let totalPage;
-  if (allProducts.total > allProducts.limit) {
-    if (allProducts.total % allProducts.limit === 0) {
-      totalPage = Math.round(allProducts.total / allProducts.limit);
+  if (productsData.total > productsData.limit) {
+    if (productsData.total % productsData.limit === 0) {
+      totalPage = Math.round(productsData.total / productsData.limit);
     } else {
-      totalPage = Math.round(allProducts.total / allProducts.limit) + 1;
+      totalPage = Math.round(productsData.total / productsData.limit) + 1;
     }
   } else {
     totalPage = 1;
@@ -42,7 +40,7 @@ const ProductsContainer = () => {
         {page}/{totalPage}
       </p>
       <div className="my-8 flex w-[75vw] flex-wrap justify-center gap-5">
-        {allProducts.products.map((product) => (
+        {productsData.products.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>

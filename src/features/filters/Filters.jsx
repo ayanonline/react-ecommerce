@@ -5,7 +5,7 @@ import {
   clearFilters,
   filterRatins,
   filterMaxPrice,
-} from "../store/slices/filterSlice";
+} from "../../store/slices/filterSlice";
 
 const Filters = () => {
   const [price, setPrice] = useState(1000);

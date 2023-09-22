@@ -1,43 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getProductDetails } from "../services/apiProducts";
-import { addToCart } from "../services/apiCart";
-import { useMutation } from "@tanstack/react-query";
-import { useDispatch } from "react-redux";
-import { updateCart } from "../store/slices/cartSlice";
+import { useQueryClient } from "@tanstack/react-query";
 import ProductGallery from "../components/ProductGallery";
-import toast from "react-hot-toast";
+import useProductDetails from "../hooks/useProductDetails";
+import useAddToCart from "../hooks/useAddToCart";
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
   const queryClient = useQueryClient();
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["productDetails", productId] });
   }, [productId, queryClient]);
 
-  // adding product into cart
-  const { isLoading: isAddingToCart, mutate } = useMutation({
-    mutationFn: () => addToCart(productId, quantity),
-    onSuccess: (data) => {
-      dispatch(updateCart(data.cart.items));
-      toast.success("Successfully added to cart");
-    },
-    onError: () => toast.error("Failed to add in cart"),
-  });
+  const { isAddingToCart, addToCart } = useAddToCart(productId, quantity);
 
-  const {
-    isLoading,
-    data: productDetails,
-    error,
-  } = useQuery({
-    queryKey: ["productDetails", productId],
-    queryFn: () => getProductDetails(productId),
-  });
+  const { isLoading, productDetails, error } = useProductDetails(productId);
 
   if (error) return <h1>Something went wrong in server</h1>;
   if (isLoading) return <h1>loading</h1>;
@@ -78,7 +57,7 @@ const ProductDetails = () => {
 
         <button
           className="rounded-md border bg-green-500 px-4 py-2 text-xl text-white"
-          onClick={mutate}
+          onClick={addToCart}
           disabled={isAddingToCart}
         >
           {isAddingToCart ? "Adding to cart..." : "Add to Cart"}

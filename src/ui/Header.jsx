@@ -1,7 +1,7 @@
 import { SlBasketLoaded } from "react-icons/sl";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Search from "../features/Search";
+import Search from "../features/search/Search";
 
 const Header = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
