@@ -1,11 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import { baseUrl } from "../../utils/constrant";
 
 export const signup = createAsyncThunk(
   "user/signup",
   async (userData, thunkAPI) => {
     try {
-      const res = await fetch("http://localhost:4000/api/v1/user/register", {
+      const res = await fetch(`${baseUrl}/user/register`, {
         method: "POST",
         body: userData,
       });

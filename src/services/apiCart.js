@@ -1,4 +1,5 @@
 import axios from "axios";
+import { baseUrl } from "../utils/constrant";
 
 const instance = axios.create({
   withCredentials: true,
@@ -9,7 +10,7 @@ export const addToCart = async (productId, quantity = 1) => {
   try {
     const res = await instance({
       method: "POST",
-      url: "http://localhost:4000/api/v1/cart/",
+      url: `${baseUrl}/cart/`,
       data: {
         productId,
         quantity,
@@ -24,7 +25,7 @@ export const addToCart = async (productId, quantity = 1) => {
 // get
 export const getAllCart = async () => {
   try {
-    const res = await instance.get("http://localhost:4000/api/v1/cart/");
+    const res = await instance.get(`${baseUrl}/cart/`);
     return res.data.cart;
   } catch (error) {
     throw error;
@@ -34,9 +35,7 @@ export const getAllCart = async () => {
 // delete
 export const deleteItem = async (productId) => {
   try {
-    const res = await instance.delete(
-      `http://localhost:4000/api/v1/cart/${productId}`,
-    );
+    const res = await instance.delete(`${baseUrl}/cart/${productId}`);
     return res.data;
   } catch (error) {
     throw error;
@@ -48,7 +47,7 @@ export const updateItem = async (productId, quantity) => {
   try {
     const res = await instance({
       method: "PATCH",
-      url: `http://localhost:4000/api/v1/cart/${productId}`,
+      url: `${baseUrl}/cart/${productId}`,
       data: {
         quantity,
       },

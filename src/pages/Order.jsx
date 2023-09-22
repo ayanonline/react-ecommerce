@@ -1,9 +1,10 @@
 import { useState } from "react";
-import AddressCard from "../features/address/AddressCard";
-import AddressForm from "../features/address/AddressForm";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getAddress } from "../services/apiAddress";
+
 import OrderSummary from "../features/order/OrderSummary";
+import AddressForm from "../features/address/AddressForm";
+import AddressCard from "../features/address/AddressCard";
 
 const Order = () => {
   const [showAddressForm, setShowAddressForm] = useState(false);

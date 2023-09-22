@@ -53,7 +53,14 @@ const App = () => {
                 }
               />
               <Route path="/products/:productId" element={<ProductDetails />} />
-              <Route path="/cart" element={<Cart />} />
+              <Route
+                path="/cart"
+                element={
+                  <ProtectedRoute>
+                    <Cart />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
 

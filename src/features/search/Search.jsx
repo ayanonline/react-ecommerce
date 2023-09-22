@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../../utils/constrant";
 
 const Search = () => {
   const [searchText, setSearchText] = useState("");
@@ -19,9 +20,7 @@ const Search = () => {
   }, [searchText]);
 
   const getSearchSuggestion = async () => {
-    const res = await fetch(
-      "http://localhost:4000/api/v1/products?keyword=" + searchText,
-    );
+    const res = await fetch(`${baseUrl}/products?keyword=${searchText}`);
     const json = await res.json();
     setSuggestions(json.products);
   };

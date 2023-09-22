@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import Header from "./Header";
 import Footer from "./Footer";
 import axios from "axios";
+import { baseUrl } from "../utils/constrant";
 
 const AppLayout = () => {
   const [token] = useState(Cookies.get("token"));
@@ -28,7 +29,7 @@ const AppLayout = () => {
     if (isAuthenticated) {
       async function fetchCart() {
         try {
-          const res = await instance.get("http://localhost:4000/api/v1/cart/");
+          const res = await instance.get(`${baseUrl}/cart/`);
           dispatch(updateCart(res.data.cart.items));
         } catch (error) {
           console.log(error);

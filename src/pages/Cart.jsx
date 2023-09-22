@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import { getAllCart } from "../services/apiCart";
 import CartProductCard from "../features/cart/CartProductCard";
 import CartSummary from "../features/cart/CartSummary";
 import EmptyCart from "../features/cart/EmptyCart";

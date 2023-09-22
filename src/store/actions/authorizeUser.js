@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { baseUrl } from "../../utils/constrant";
 import axios from "axios";
 
 export const authorizeUser = createAsyncThunk(
@@ -8,7 +9,7 @@ export const authorizeUser = createAsyncThunk(
       const instance = axios.create({
         withCredentials: true,
       });
-      const res = await instance.get("http://localhost:4000/api/v1/user/me");
+      const res = await instance.get(`${baseUrl}/user/me`);
 
       if (res.status === 200) {
         return res.data;
