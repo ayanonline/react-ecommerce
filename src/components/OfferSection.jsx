@@ -8,7 +8,7 @@ const OfferSection = () => {
           Sale <br />
           30% <br /> off
         </span>
-        <p className="p-2 text-xl font-thin lg:p-5 lg:text-[3rem]">
+        <p className="p-2 text-xl font-thin leading-normal lg:p-5 lg:text-[3rem]">
           <span>Farm</span> <span className="text-green-500">Fresh</span>
           <br /> Vegetable
         </p>
