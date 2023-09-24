@@ -1,4 +1,5 @@
 import { SlBasketLoaded } from "react-icons/sl";
+import { HiMenuAlt3 } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Search from "../features/search/Search";
@@ -9,22 +10,26 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
-      <nav className="flex select-none items-center justify-between px-[20rem] py-4">
+      <nav className="flex select-none items-center justify-between px-2 py-2 lg:px-[20rem] lg:py-4">
         <div>
-          <Link to="/" className="text-4xl font-bold text-green-500">
+          <Link to="/" className="font-bold text-green-500 lg:text-4xl">
             Fresh Grocery
           </Link>
         </div>
-        <div className="flex items-center gap-5">
-          <Search />
+
+        <Search />
+
+        <HiMenuAlt3 className="h-8 w-8 text-green-500 lg:hidden" />
+
+        <div className="hidden items-center gap-5 lg:flex">
           <ul className="flex gap-5">
             <li>
-              <NavLink to="/" className="text-xl text-gray-400">
+              <NavLink to="/" className="text-gray-400 lg:text-xl">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/products" className="text-xl text-gray-400">
+              <NavLink to="/products" className="text-gray-400 lg:text-xl">
                 All products
               </NavLink>
             </li>
@@ -48,7 +53,7 @@ const Header = () => {
               />
             </Link>
           ) : (
-            <button className="rounded-md border bg-green-500 px-8 py-1 text-xl font-semibold text-white">
+            <button className="rounded-md border bg-green-500 px-8 py-1 font-semibold text-white lg:text-xl">
               <Link to="/login">Login</Link>
             </button>
           )}

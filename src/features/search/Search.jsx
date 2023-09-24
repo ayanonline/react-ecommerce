@@ -27,7 +27,7 @@ const Search = () => {
 
   return (
     <div className="relative">
-      <div className="flex w-[47vw] items-center rounded-md border p-2 md:w-[25vw]">
+      <div className="flex w-[55vw] items-center rounded-md border p-1 md:w-[25vw] lg:p-2">
         <CiSearch className="h-6 w-6" />
         <input
           type="text"
