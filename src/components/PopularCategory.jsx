@@ -21,26 +21,26 @@ const PopularCategory = () => {
   };
 
   return (
-    <section className="mx-[20rem] my-10">
-      <h1 className="mb-5 text-5xl">Popular Categoires</h1>
+    <section className="mx-5 my-2 lg:mx-[20rem] lg:my-10">
+      <h1 className="mb-2 lg:mb-5 lg:text-5xl">Popular Categoires</h1>
 
       <div className="relative">
         <button
-          className="absolute -left-6 top-[40%] rounded-full bg-white p-4 shadow-lg"
+          className="absolute -left-2 top-[40%] rounded-full bg-white p-2 shadow-lg lg:-left-6 lg:p-4"
           onClick={slideLeft}
         >
-          <HiOutlineArrowNarrowLeft className="h-6 w-6 text-green-400" />
+          <HiOutlineArrowNarrowLeft className="h-3 w-3 text-green-400 lg:h-6 lg:w-6" />
         </button>
         <button
-          className="absolute -right-6 top-[40%] rounded-full bg-white p-4 shadow-lg"
+          className="absolute -right-2 top-[40%] rounded-full bg-white p-2 shadow-lg lg:-right-6 lg:p-4"
           onClick={slideRight}
         >
-          <HiOutlineArrowNarrowRight className="h-6 w-6 text-green-400" />
+          <HiOutlineArrowNarrowRight className="h-3 w-3 text-green-400 lg:h-6 lg:w-6" />
         </button>
 
         <div
           ref={sliderRef}
-          className="scrollbar-hide flex overflow-x-scroll scroll-smooth"
+          className="flex overflow-x-scroll scroll-smooth scrollbar-hide"
         >
           <CategoryCard title="Meats" bg="bg-pink-200" img="/meats.png" />
           <CategoryCard
