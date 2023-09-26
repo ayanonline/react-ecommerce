@@ -26,13 +26,13 @@ const PopularCategory = () => {
 
       <div className="relative">
         <button
-          className="absolute -left-2 top-[40%] rounded-full bg-white p-2 shadow-lg lg:-left-6 lg:p-4"
+          className="absolute -left-2 top-[40%] rounded-full border bg-white p-2 shadow-lg lg:-left-6 lg:p-4"
           onClick={slideLeft}
         >
           <HiOutlineArrowNarrowLeft className="h-3 w-3 text-green-400 lg:h-6 lg:w-6" />
         </button>
         <button
-          className="absolute -right-2 top-[40%] rounded-full bg-white p-2 shadow-lg lg:-right-6 lg:p-4"
+          className="absolute -right-2 top-[40%] rounded-full border bg-white p-2 shadow-lg lg:-right-6 lg:p-4"
           onClick={slideRight}
         >
           <HiOutlineArrowNarrowRight className="h-3 w-3 text-green-400 lg:h-6 lg:w-6" />
