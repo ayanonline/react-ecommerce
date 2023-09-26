@@ -27,7 +27,7 @@ const OurProducts = () => {
           <Button title="Bread & cakes" />
         </div>
       </div>
-      <div className="flex flex-wrap justify-between lg:my-4">
+      <div className="flex flex-wrap justify-around lg:my-4">
         {!isLoading &&
           productsData.products.map((item) => (
             <ProductCard key={item._id} product={item} />

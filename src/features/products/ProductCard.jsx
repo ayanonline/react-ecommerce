@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
   const { isAddingToCart, addToCart } = useAddToCart(product._id);
 
   return (
-    <div className="my-2 flex w-[10.5rem] flex-col items-center gap-1 rounded-md border p-4 shadow-lg lg:w-[25rem] lg:gap-4">
+    <div className="my-2 flex w-[10rem] flex-col items-center gap-1 rounded-md border p-4 shadow-lg lg:w-[25rem] lg:gap-4">
       <Link to={"/products/" + product._id}>
         <img
           src={product.thumbnail}
