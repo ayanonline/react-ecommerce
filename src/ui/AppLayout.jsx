@@ -9,6 +9,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import axios from "axios";
 import { baseUrl } from "../utils/constrant";
+import MobileMenu from "../components/MobileMenu";
 
 const AppLayout = () => {
   const [token] = useState(Cookies.get("token"));
@@ -45,7 +46,8 @@ const AppLayout = () => {
       <main>
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
+      <MobileMenu />
     </div>
   );
 };

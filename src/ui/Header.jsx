@@ -1,5 +1,4 @@
 import { SlBasketLoaded } from "react-icons/sl";
-import { HiMenuAlt3 } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Search from "../features/search/Search";
@@ -18,8 +17,6 @@ const Header = () => {
         </div>
 
         <Search />
-
-        <HiMenuAlt3 className="h-8 w-8 text-green-500 lg:hidden" />
 
         <div className="hidden items-center gap-5 lg:flex">
           <ul className="flex gap-5">
