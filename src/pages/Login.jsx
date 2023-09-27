@@ -34,14 +34,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-[92vh]  select-none items-start bg-gray-100 px-[20rem] py-20">
-      <section className="min-w-[50%] p-20">
+    <div className="flex min-h-screen  select-none items-start bg-gray-100 lg:px-[20rem] ">
+      <section className="hidden min-w-[50%] p-20 lg:block">
         <h1 className="text-5xl">Welcome back </h1>
         <h2 className="mt-4 text-2xl">Good to see you again</h2>
         <img src="/cart.png" alt="an image" className="-mt-8 h-[24rem]" />
       </section>
 
-      <section className="min-w-[50%] p-20">
+      <section className="w-full px-5 py-20 lg:min-w-[50%] lg:p-20">
         <h1 className="mb-16 text-5xl font-bold text-green-500">Sign In</h1>
         <form className="flex flex-col" onSubmit={handleSubmit}>
           <input
