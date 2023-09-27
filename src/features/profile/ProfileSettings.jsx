@@ -12,7 +12,7 @@ const ProfileSettings = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [profilePhoto, setProfilePhoto] = useState();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -67,6 +67,7 @@ const ProfileSettings = () => {
             type="file"
             name=""
             id=""
+            value={image}
             onChange={(e) => setImage(e.target.files[0])}
             className="absolute left-0 top-0 h-10 w-10 cursor-pointer rounded-full py-2 opacity-0 file:cursor-pointer"
           />

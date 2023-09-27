@@ -30,17 +30,17 @@ const Order = () => {
   if (isLoading) return null;
 
   return (
-    <div className="relative flex min-h-screen items-start justify-between px-[20rem] py-10">
-      <section>
-        <h1 className="mb-2 text-2xl">Select delivery address</h1>
-        <div className="flex w-[50rem] flex-col gap-2">
+    <div className="relative flex min-h-screen flex-col items-start gap-4 px-5 py-5 lg:flex-row lg:justify-between lg:px-[20rem] lg:py-10">
+      <section className="w-full">
+        <h1 className="mb-2 lg:text-2xl">Select delivery address</h1>
+        <div className="flex flex-col gap-2 lg:w-[50rem]">
           {address.map((item) => (
             <AddressCard key={item._id} address={item} />
           ))}
         </div>
         {!showAddressForm && (
           <button
-            className="w-[24rem] rounded-md border-2 border-dashed py-4 text-xl"
+            className="rounded-md border-2 border-dashed p-2 text-xs lg:w-[24rem] lg:py-4 lg:text-xl"
             onClick={() => setShowAddressForm(true)}
           >
             Add new address

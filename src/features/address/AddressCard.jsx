@@ -39,7 +39,7 @@ const AddressCard = ({ address }) => {
       {showForm ? (
         <AddressForm formName="update" hideForm={setShowForm} data={address} />
       ) : (
-        <div className="relative mb-2 flex w-[40rem] items-center rounded-md border-2 p-4">
+        <div className="relative mb-2 flex items-center rounded-md border-2 p-4 lg:w-[40rem]">
           {isSelecting && <Loader />}
           <input
             type="radio"
@@ -49,10 +49,10 @@ const AddressCard = ({ address }) => {
             className="mr-4 h-6 w-6 cursor-pointer"
           />
           <div>
-            <h1 className="mb-2 text-xl">
+            <h1 className="mb-2 text-sm lg:text-xl">
               {address?.name} {address?.phoneNumber}
             </h1>
-            <p className="text-lg text-gray-500">
+            <p className="text-xs text-gray-500 lg:text-lg">
               {address?.name} {address?.locality} {address?.city} -
               {address?.pincode}
             </p>
@@ -61,14 +61,14 @@ const AddressCard = ({ address }) => {
             className="absolute right-4 top-4"
             onClick={() => setShowForm(true)}
           >
-            <FiEdit className="text-xl" />
+            <FiEdit className="lg:text-xl" />
           </button>
           <button
             disabled={isDeleting}
             className="absolute bottom-4 right-4"
             onClick={() => deleteAddress()}
           >
-            <HiOutlineTrash className="h-6 w-6 cursor-pointer text-red-500" />
+            <HiOutlineTrash className="cursor-pointer text-red-500 lg:h-6 lg:w-6" />
           </button>
         </div>
       )}
