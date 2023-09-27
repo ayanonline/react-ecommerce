@@ -30,7 +30,7 @@ const MobileMenu = () => {
         </NavLink>
 
         <NavLink
-          to="/profile"
+          to="/profile/settings"
           className={({ isActive }) =>
             isActive ? "text-green-500" : "text-black"
           }
