@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import { baseUrl } from "../../utils/constrant";
+import { baseUrl, domain } from "../../utils/constrant";
 
 export const login = createAsyncThunk(
   "user/login",
@@ -16,7 +16,7 @@ export const login = createAsyncThunk(
       });
       const data = await res.json();
       if (res.status === 200) {
-        Cookies.set("token", data.token, { expires: 5 });
+        Cookies.set("token", data.token, { expires: 5, domain: domain });
         return data;
       } else {
         throw new Error(data.message);
