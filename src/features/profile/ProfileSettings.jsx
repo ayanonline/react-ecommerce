@@ -43,18 +43,18 @@ const ProfileSettings = () => {
 
   return (
     <section className="relative flex flex-col">
-      <h1 className="my-4 text-3xl font-bold text-green-400">
-        YOUR ACCOUNT SETTINGS
+      <h1 className="my-4 font-bold text-green-400 lg:text-3xl">
+        ACCOUNT SETTINGS
       </h1>
 
       <div className="relative mb-2 w-fit rounded-full border-2">
         <img
           src={profilePhoto}
           alt=""
-          className="h-40 w-40 rounded-full object-cover"
+          className="h-24 w-24 rounded-full object-cover lg:h-40 lg:w-40"
         />
         <div className="absolute bottom-0 right-2 cursor-pointer rounded-full bg-gray-300 p-2">
-          <MdModeEditOutline className=" text-2xl" />
+          <MdModeEditOutline className=" lg:text-2xl" />
           <input
             type="file"
             name=""
@@ -65,7 +65,7 @@ const ProfileSettings = () => {
         </div>
       </div>
 
-      <label htmlFor="name" className="mb-1 text-lg">
+      <label htmlFor="name" className="mb-1 text-sm lg:text-lg">
         Name
       </label>
       <input
@@ -73,10 +73,10 @@ const ProfileSettings = () => {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="mb-4 rounded-md bg-gray-100 p-3 outline-none"
+        className="mb-4 rounded-md bg-gray-100 p-3 text-xs outline-none lg:text-base"
       />
 
-      <label htmlFor="email" className="mb-1 text-lg">
+      <label htmlFor="email" className="mb-1 text-sm lg:text-lg">
         Email address
       </label>
       <input
@@ -84,12 +84,12 @@ const ProfileSettings = () => {
         type="text"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="mb-20 rounded-md bg-gray-100 p-3 outline-none"
+        className="mb-20 rounded-md bg-gray-100 p-3 text-xs outline-none lg:text-base"
       />
 
       <button
         disabled={isLoading}
-        className="absolute bottom-0 right-0 mb-4 w-fit bg-green-500 p-2 text-white"
+        className="absolute bottom-0 right-0 mb-4 w-fit bg-green-500 p-2 text-sm text-white lg:text-base"
         onClick={clickHandler}
       >
         {isLoading ? "Updating profile..." : "SAVE SETTINGS"}
