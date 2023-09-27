@@ -11,8 +11,8 @@ const Cart = () => {
   return cart.items.length === 0 ? (
     <EmptyCart />
   ) : (
-    <div className="flex min-h-screen items-start justify-between bg-gray-100 px-[20rem] py-10">
-      <section>
+    <div className="mb-10 flex min-h-screen flex-col items-start bg-gray-100 px-5 py-10 lg:mb-0 lg:flex-row lg:justify-between lg:px-[20rem]">
+      <section className="w-full">
         {cart.items.map((item) => (
           <CartProductCard key={item._id} product={item} />
         ))}
