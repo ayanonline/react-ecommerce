@@ -6,7 +6,7 @@ const Profile = () => {
       <div className="flex flex-col bg-green-600 py-4 text-sm text-white lg:w-36">
         <NavLink
           to="settings"
-          className={({ isActive }) => isActive && "bg-green-500"}
+          className={({ isActive }) => (isActive ? "bg-green-500" : "")}
         >
           <div className="px-2 py-4 text-center text-sm font-bold tracking-wider lg:text-lg">
             Settings
@@ -14,7 +14,7 @@ const Profile = () => {
         </NavLink>
         <NavLink
           to="orders"
-          className={({ isActive }) => isActive && "bg-green-500"}
+          className={({ isActive }) => (isActive ? "bg-green-500" : "")}
         >
           <div className="px-2 py-4 text-center text-sm font-bold tracking-wider lg:text-lg">
             Orders
