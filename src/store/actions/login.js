@@ -16,7 +16,13 @@ export const login = createAsyncThunk(
       });
       const data = await res.json();
       if (res.status === 200) {
-        Cookies.set("token", data.token, { expires: 5, domain: domain });
+        Cookies.set("token", data.token, {
+          expires: 5,
+          domain: domain,
+          sameSite: "None",
+          secure: true,
+        });
+
         return data;
       } else {
         throw new Error(data.message);
