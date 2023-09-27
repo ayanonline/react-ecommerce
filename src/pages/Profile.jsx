@@ -8,7 +8,7 @@ const Profile = () => {
           to="settings"
           className={({ isActive }) => isActive && "bg-green-500"}
         >
-          <div className="px-2 py-4 text-center text-lg font-bold tracking-wider">
+          <div className="px-2 py-4 text-center text-sm font-bold tracking-wider lg:text-lg">
             Settings
           </div>
         </NavLink>
@@ -16,7 +16,7 @@ const Profile = () => {
           to="orders"
           className={({ isActive }) => isActive && "bg-green-500"}
         >
-          <div className="px-2 py-4 text-center text-lg font-bold tracking-wider">
+          <div className="px-2 py-4 text-center text-sm font-bold tracking-wider lg:text-lg">
             Orders
           </div>
         </NavLink>
