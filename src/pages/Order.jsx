@@ -30,7 +30,7 @@ const Order = () => {
   if (isLoading) return null;
 
   return (
-    <div className="relative flex min-h-screen flex-col items-start gap-4 px-5 py-5 lg:flex-row lg:justify-between lg:px-[20rem] lg:py-10">
+    <div className="relative mb-10 flex min-h-screen flex-col items-start gap-4 px-5 py-5 lg:flex-row lg:justify-between lg:px-[20rem] lg:py-10">
       <section className="w-full">
         <h1 className="mb-2 lg:text-2xl">Select delivery address</h1>
         <div className="flex flex-col gap-2 lg:w-[50rem]">

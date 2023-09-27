@@ -42,7 +42,7 @@ export const updateAddress = async (addressId, formData) => {
 export const createAddress = async (data) => {
   try {
     const res = await instance.post(
-      "${baseUrl}/address",
+      `${baseUrl}/address`,
       Object.fromEntries(data.entries()),
     );
     return res.data;

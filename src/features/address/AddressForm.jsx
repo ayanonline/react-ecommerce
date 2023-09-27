@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const Input = ({ name, state, handler }) => {
   return (
-    <div className="my-2 w-[19rem] border-2 px-2 py-1">
+    <div className="my-2 w-full border-2 px-2 py-1 lg:w-[19rem]">
       <label className="text-sm text-gray-500">{name}</label>
       <br />
       <input
@@ -69,11 +69,11 @@ const AddressForm = ({ formName, hideForm, data }) => {
 
   return (
     <div className="relative my-2">
-      <h1 className="text-xl">
+      <h1 className="text-sm lg:text-xl">
         {formName === "update" ? "Update address" : "Create address"}
       </h1>
       <form
-        className="flex w-[40rem] flex-wrap justify-between gap-2"
+        className="flex flex-wrap justify-between gap-2 lg:w-[40rem]"
         onSubmit={submitHandler}
       >
         <Input name="Name" state={name} handler={setName} />
@@ -94,7 +94,7 @@ const AddressForm = ({ formName, hideForm, data }) => {
 
         <Input name="City/Dist" state={city} handler={setCity} />
 
-        <div className="my-2 h-fit w-[19rem] border-2 px-2 py-1">
+        <div className="my-2 h-fit w-full border-2 px-2 py-1 lg:w-[19rem]">
           <label className="text-sm text-gray-500">State</label>
           <br />
           <select
