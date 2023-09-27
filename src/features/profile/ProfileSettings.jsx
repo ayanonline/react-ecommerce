@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdModeEditOutline } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
@@ -7,12 +7,20 @@ import { updateUser } from "../../store/slices/userSlice";
 import toast from "react-hot-toast";
 
 const ProfileSettings = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
-  const [profilePhoto, setProfilePhoto] = useState(user.avatar);
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [profilePhoto, setProfilePhoto] = useState();
   const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setEmail(user.email);
+      setName(user.name);
+      setProfilePhoto(user.avatar);
+    }
+  }, [isAuthenticated]);
 
   const dispatch = useDispatch();
 

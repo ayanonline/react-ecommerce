@@ -9,7 +9,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import axios from "axios";
 import { baseUrl } from "../utils/constrant";
-import MobileMenu from "../components/MobileMenu";
+import MobileMenu from "./MobileMenu";
 
 const AppLayout = () => {
   const [token] = useState(Cookies.get("token"));
