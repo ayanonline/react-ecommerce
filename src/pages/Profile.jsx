@@ -12,8 +12,9 @@ const Profile = () => {
             Settings
           </div>
         </NavLink>
+
         <NavLink
-          to="orders"
+          to="order-list"
           className={({ isActive }) => (isActive ? "bg-green-500" : "")}
         >
           <div className="px-2 py-4 text-center text-sm font-bold tracking-wider lg:text-lg">

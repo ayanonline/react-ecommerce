@@ -16,7 +16,7 @@ const CartSummary = ({ cart }) => {
         <span className="font-bold text-green-500">₹{cart?.totalAmount}</span>
       </div>
       <hr className="my-2 lg:my-6" />
-      <Link to="/order">
+      <Link to="/checkout">
         <button className="w-full bg-green-500 px-4 py-2 text-xs text-white lg:text-2xl">
           Proceed
         </button>
