@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
 import { baseUrl } from "../../utils/constrant";
 
 export const login = createAsyncThunk(
@@ -8,6 +7,7 @@ export const login = createAsyncThunk(
     try {
       const res = await fetch(`${baseUrl}/user/login`, {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: userData.email,
@@ -16,7 +16,6 @@ export const login = createAsyncThunk(
       });
       const data = await res.json();
       if (res.status === 200) {
-        Cookies.set("token", data.token, { expires: 5 });
         return data;
       } else {
         throw new Error(data.message);

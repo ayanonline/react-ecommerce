@@ -12,16 +12,13 @@ import { baseUrl } from "../utils/constrant";
 import MobileMenu from "./MobileMenu";
 
 const AppLayout = () => {
-  const [token] = useState(Cookies.get("token"));
   const { isAuthenticated } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (token) {
-      dispatch(authorizeUser());
-    }
-  }, [token]);
+    dispatch(authorizeUser());
+  }, []);
 
   useEffect(() => {
     const instance = axios.create({

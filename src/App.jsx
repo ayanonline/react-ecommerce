@@ -73,11 +73,11 @@ const App = () => {
                 }
               >
                 <Route path="settings" element={<Settings />} />
-                <Route path="orders" />
+                <Route path="order-list" />
               </Route>
 
               <Route
-                path="/order"
+                path="/checkout"
                 element={
                   <ProtectedRoute>
                     <Order />

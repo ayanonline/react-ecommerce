@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {},
+  initialState: { isLoading: true, isAuthenticated: false },
   reducers: {
     logout: (state) => {
       Cookies.remove("token");
