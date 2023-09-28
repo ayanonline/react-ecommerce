@@ -20,9 +20,8 @@ const Signup = () => {
     (state) => state.user,
   );
 
-  if (error) toast.error(error);
-
   useEffect(() => {
+    if (error) toast.error(error);
     isAuthenticated && navigate("/");
   }, [isAuthenticated]);
 

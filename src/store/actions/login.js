@@ -1,24 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { baseUrl } from "../../utils/constrant";
+import axios from "axios";
 
 export const login = createAsyncThunk(
   "user/login",
   async (userData, thunkAPI) => {
     try {
-      const res = await fetch(`${baseUrl}/user/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const response = await axios.post(
+        `${baseUrl}/user/login`,
+        {
           email: userData.email,
           password: userData.password,
-        }),
-      });
-      const data = await res.json();
-      if (res.status === 200) {
-        return data;
+        },
+        {
+          withCredentials: true,
+        },
+      );
+
+      if (response.status === 200) {
+        return response.data;
       } else {
-        throw new Error(data.message);
+        throw new Error(response.data.message);
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
