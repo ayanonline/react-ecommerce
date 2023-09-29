@@ -5,19 +5,8 @@ const OrderSummary = ({ isAddressSelected, selectedAddress }) => {
   const { isLoading, error, cart } = useCart();
   if (isLoading) return null;
 
-  const shippingPrice = cart.totalAmount >= 500 ? 0 : 40;
-  const totalPrice = cart.totalAmount + shippingPrice;
-
-  const orderOption = {
-    itemPrice: cart.totalAmount,
-    taxPrice: 0,
-    shippingPrice,
-    totalPrice,
-    orderItems: cart.items,
-    shippingInfo: selectedAddress,
-  };
   const checkoutHandler = () => {
-    createOrder(orderOption);
+    createOrder(cart._id);
   };
 
   return (
@@ -32,15 +21,17 @@ const OrderSummary = ({ isAddressSelected, selectedAddress }) => {
       </div>
       <div className="mt-2 flex justify-between text-xs lg:mt-5 lg:text-2xl">
         <span>Price</span>
-        <span className="font-bold text-green-500">₹{cart.totalAmount}</span>
+        <span className="font-bold text-green-500">
+          ₹{cart.totalAmount - cart.shippingPrice}
+        </span>
       </div>
       <div className="mt-2 flex justify-between text-xs lg:mt-5 lg:text-2xl">
         <span>ShippingPrice</span>
-        <span className="font-bold text-green-500">₹{shippingPrice}</span>
+        <span className="font-bold text-green-500">₹{cart.shippingPrice}</span>
       </div>
       <div className="mt-2 flex justify-between text-xs lg:mt-5 lg:text-2xl">
         <span>Total</span>
-        <span className="font-bold text-green-500">₹{totalPrice}</span>
+        <span className="font-bold text-green-500">₹{cart.totalAmount}</span>
       </div>
       <hr className="my-2 lg:my-6" />
 
