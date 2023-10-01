@@ -30,11 +30,11 @@ const ProductDetails = () => {
   } = productDetails;
 
   return (
-    <div className="mx-[20rem] my-10 flex gap-8">
+    <div className="mx-5 my-10 flex flex-col gap-8 lg:mx-[20rem] lg:flex-row">
       <ProductGallery images={images} />
-      <section className="flex flex-col items-start gap-5">
-        <h1>/Produts/{productId}</h1>
-        <h1 className="text-3xl capitalize">{name}</h1>
+      <section className="flex flex-col items-start gap-2 lg:gap-5">
+        {/* <h1>/Produts/{productId}</h1> */}
+        <h1 className="capitalize lg:text-3xl">{name}</h1>
         <p className="capitalize">{description}</p>
         <p className="text-xl font-bold text-green-500">₹{price}</p>
         <div>
@@ -56,7 +56,7 @@ const ProductDetails = () => {
         </div>
 
         <button
-          className="rounded-md border bg-green-500 px-4 py-2 text-xl text-white"
+          className="rounded-md border bg-green-500 px-4 py-2 text-white lg:text-xl"
           onClick={addToCart}
           disabled={isAddingToCart}
         >

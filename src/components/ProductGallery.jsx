@@ -18,12 +18,12 @@ const ProductGallery = ({ images }) => {
   };
 
   return (
-    <div className="min-w-[30vw] max-w-[30vw] border-2">
+    <div className="border-2 lg:min-w-[30vw] lg:max-w-[30vw]">
       <img
         ref={targetImage}
         src={images[0]}
         alt="product image"
-        className="max-h-[30rem] min-h-[30rem] min-w-[100%] max-w-[100%] object-cover p-2"
+        className="min-w-[100%] max-w-[100%] object-cover p-2 lg:max-h-[30rem] lg:min-h-[30rem]"
       />
       <div className="relative border-t-2 p-2">
         <button
@@ -49,7 +49,7 @@ const ProductGallery = ({ images }) => {
               key={index}
               src={img}
               alt="product-images"
-              className="h-20 min-w-[5rem] cursor-pointer border-r"
+              className="h-20 min-w-[5rem] cursor-pointer border-r object-cover"
               onMouseOver={(e) => (targetImage.current.src = e.target.src)}
             />
           ))}
